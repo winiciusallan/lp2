@@ -1,1 +1,3 @@
-# Repositório para as resoluções dos labs da cadeira de Laboratório de Programação 2 @ UFCG
+# Laboratório de Programação 2
+
+Repositório para armazenar resoluções da cadeira de LP2 @ UFCG
