@@ -1,6 +1,11 @@
 import java.util.Scanner;
 
 public class AlturaDoAviao {
+    /** 
+    * Laboratório de Programação - Lab 1
+    *
+    * @author Winicius Allan - 122110397
+    **/
     public static void main(String[] args) {
         
         Scanner input = new Scanner(System.in);
