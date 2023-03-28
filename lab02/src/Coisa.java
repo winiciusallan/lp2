@@ -6,7 +6,7 @@ public class Coisa {
         System.out.println("-----");
         controlarDisciplina();
         System.out.println("-----");
-//        registrarResumos();
+        registrarResumos();
     }
     public static void registrarDescanso() {
         Descanso descanso = new Descanso();
@@ -45,25 +45,25 @@ public class Coisa {
         System.out.println(prog2.aprovado());
         System.out.println(prog2.toString());
     }
-//    private static void registrarResumos() {
-//        RegistroResumos meusResumos = new RegistroResumos(100);  // 100 resumos
-//
-//        meusResumos.adiciona("Classes", "Classes definem um tipo e a base de código para criação de objetos.");
-//        meusResumos.adiciona("Tipo", "Identifica a semântica (operações e significados) de um conjunto de dados.");
-//
-//
-//        String[] resumos = meusResumos.pegaResumos();
-//
-//
-//        for (int i = 0; i < meusResumos.conta(); i++) {
-//            System.out.println(resumos[i]);
-//        }
-//
-//
-//        System.out.println();
-//        System.out.println("Resumos: ");
-//        System.out.println(meusResumos.imprimeResumos());
-//        System.out.println(meusResumos.temResumo("Classes"));
-//        System.out.println(meusResumos.temResumo("Objetos"));
-//    }
+    private static void registrarResumos() {
+        RegistroResumos meusResumos = new RegistroResumos(100);  // 100 resumos
+
+        meusResumos.adiciona("Classes", "Classes definem um tipo e a base de código para criação de objetos.");
+        meusResumos.adiciona("Tipo", "Identifica a semântica (operações e significados) de um conjunto de dados.");
+
+
+        String[] resumos = meusResumos.pegaResumos();
+
+
+        for (int i = 0; i < meusResumos.conta(); i++) {
+            System.out.println(resumos[i]);
+        }
+
+
+        System.out.println();
+        System.out.println("Resumos: ");
+        System.out.println(meusResumos.imprimeResumos());
+        System.out.println(meusResumos.temResumo("Classes"));
+        System.out.println(meusResumos.temResumo("Objetos"));
+    }
 }
