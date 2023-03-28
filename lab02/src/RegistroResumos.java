@@ -12,6 +12,8 @@ public class RegistroResumos {
         this.conteudo = new String[numeroDeResumos];
     }
 
+    public String[] pegaResumos() { return resumos; }
+
     public void adiciona(String tema, String resumo) {
         for (int i = 0; i < resumos.length; i++) {
             if (resumos[i] == null) {
@@ -22,12 +24,11 @@ public class RegistroResumos {
         }
     }
 
-    public String[] pegaResumos() { return resumos; }
-
     public int conta() {
         int cont = 0;
-        for (int i = 0; i < resumos.length; i++) {
-            if (resumos[i] != null) { cont++; }
+
+        for (String resumo : resumos) {
+            if (resumo != null) { cont++; }
         }
 
         return cont;
@@ -38,6 +39,7 @@ public class RegistroResumos {
         for (int i = 0; i < conta(); i++) {
             if (conteudo[i].equals(tema)) {
                 exists = true;
+                break;
             }
         }
 
@@ -45,8 +47,16 @@ public class RegistroResumos {
     }
 
     public String imprimeResumos() {
-        return "- "
-                + conta()
-                + " resumo(s) cadastrado(s)\n";
+        String primeiraLinha = "- " + conta() + " resumos(s) cadastrado(s)";
+        StringBuilder segundaLinha = new StringBuilder("- "); // StringBuilder para criar uma string concatenada;
+
+        for (int i = 0; i < conta(); i++) {
+            if (i == 0) {
+                segundaLinha.append(conteudo[i]);
+            } else {
+                segundaLinha.append(" | ").append(conteudo[i]);
+            }
+        }
+        return primeiraLinha + "\n" + segundaLinha;
     }
 }
