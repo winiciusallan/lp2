@@ -14,24 +14,26 @@ public class RegistroResumos {
 
     public String[] pegaResumos() { return resumos; }
 
+    public int conta() {
+        int cont = 0;
+
+        for (String resumo : resumos) {
+            if (resumo != null) {
+                cont++;
+            }
+        }
+
+        return cont;
+    }
+
     public void adiciona(String tema, String resumo) {
         for (int i = 0; i < resumos.length; i++) {
             if (resumos[i] == null) {
                 resumos[i] = tema + ": " + resumo;
                 conteudo[i] = tema;
-                break;
+                return;
             }
         }
-    }
-
-    public int conta() {
-        int cont = 0;
-
-        for (String resumo : resumos) {
-            if (resumo != null) { cont++; }
-        }
-
-        return cont;
     }
 
     public boolean temResumo(String tema) {
