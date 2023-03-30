@@ -7,9 +7,15 @@ public class RegistroResumos {
     private String[] resumos;
     private String[] conteudo;
 
+    /**
+     * Atributo de controle de índice dos arrays
+     */
+    private int posicaoAtual;
+
     public RegistroResumos(int numeroDeResumos) {
         this.resumos = new String[numeroDeResumos];
         this.conteudo = new String[numeroDeResumos];
+        this.posicaoAtual = 0;
     }
 
     public String[] pegaResumos() { return resumos; }
@@ -27,25 +33,31 @@ public class RegistroResumos {
     }
 
     public void adiciona(String tema, String resumo) {
-        for (int i = 0; i < resumos.length; i++) {
-            if (resumos[i] == null) {
-                resumos[i] = tema + ": " + resumo;
-                conteudo[i] = tema;
-                return;
-            }
-        }
+
+        resumos[posicaoAtual] = tema + ": " + resumo;
+        conteudo[posicaoAtual] = tema;
+
+        if (posicaoAtual == resumos.length) { posicaoAtual = 0; }
+        else { posicaoAtual++; }
+
+//        for (int i = 0; i < resumos.length; i++) {
+//            if (resumos[i] == null) {
+//                resumos[i] = tema + ": " + resumo;
+//                conteudo[i] = tema;
+//                return;
+//            }
+//        }
     }
 
     public boolean temResumo(String tema) {
-        boolean exists = false;
+
         for (int i = 0; i < conta(); i++) {
             if (conteudo[i].equals(tema)) {
-                exists = true;
-                break;
+                return true;
             }
         }
 
-        return exists;
+        return false;
     }
 
     public String imprimeResumos() {

@@ -24,10 +24,6 @@ public class Descanso {
         this.numerosDeSemana = 1;
     }
 
-    public int getHorasDeDescanso() { return horasDeDescanso; }
-
-    public int getNumerosDeSemana() { return numerosDeSemana; }
-
     /**
      * É um setter para o atributo das horas de descanso
      *
