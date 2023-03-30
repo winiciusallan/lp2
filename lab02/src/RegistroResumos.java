@@ -68,6 +68,26 @@ public class RegistroResumos {
         return false;
     }
 
+    /**
+     * Método para buscar se os resumos contém uma palavra-chave
+     *
+     * @param chaveDeBusca a palavra que irá verificar se contém
+     * @return retorna um vetor com os temas dos resumos que contém a chave de busca
+     */
+    public String[] busca(String chaveDeBusca) {
+        String[] resultados = new String[conta()];
+
+        for (int i = 0; i < resumos.length; i++) {
+            if (resumos[i] == null) { return resultados; }
+
+            if (resumos[i].contains(chaveDeBusca)) { // Verifica se contem a chave dentro dos resumos
+                resultados[i] = conteudo[i];
+            }
+        }
+
+        return resultados;
+    }
+
     public String imprimeResumos() {
         String primeiraLinha = "- " + conta() + " resumos(s) cadastrado(s)";
         StringBuilder segundaLinha = new StringBuilder("- "); // StringBuilder para criar uma string concatenada;

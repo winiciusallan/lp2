@@ -7,7 +7,8 @@ public class CoisaBonus {
     public static void main(String[] args) {
         controlarDisciplina();
         System.out.println("----");
-
+        registrarResumos();
+        System.out.println("----");
     }
 
     public static void controlarDisciplina() {
@@ -18,5 +19,25 @@ public class CoisaBonus {
         prog2.cadastraNota(2, 7.0);
         System.out.println(prog2.calculaMediaPonderada());
         System.out.println(prog2);
+    }
+
+    private static void registrarResumos() {
+        RegistroResumos meusResumos = new RegistroResumos(100);  // 100 resumos
+
+        meusResumos.adiciona("Classes", "Classes definem um tipo e a base de código para criação de objetos.");
+        meusResumos.adiciona("Tipo", "Identifica a semântica (operações e significados) de um conjunto de dados.");
+
+        String[] resumos = meusResumos.pegaResumos();
+        String[] buscados = meusResumos.busca("um");
+
+        for (int i = 0; i < buscados.length; i++) {
+            if (i == 0) {
+                System.out.print(buscados[i] + " | ");
+            } else {
+                System.out.print(buscados[i]);
+            }
+        }
+        System.out.println();
+
     }
 }

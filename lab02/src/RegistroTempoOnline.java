@@ -32,7 +32,7 @@ public class RegistroTempoOnline {
     }
 
     /**
-     * Construto para criar o registro do tempo da disciplina.
+     * Construtor para criar o registro do tempo da disciplina.
      *
      * @param nomeDaDisciplina O nome da disciplina.
      * @param tempoOnlineEsperado O tempo que se espera online.
