@@ -4,7 +4,14 @@
  */
 public class RegistroResumos {
 
+    /**
+     * Um vetor que contém os resumos relacionados a um tema.
+     */
     private String[] resumos;
+
+    /**
+     * Um vetor que armazena os conteúdos tratados nos resumos.
+     */
     private String[] conteudo;
 
     /**
@@ -34,11 +41,12 @@ public class RegistroResumos {
 
     public void adiciona(String tema, String resumo) {
 
+        if (posicaoAtual == resumos.length) { posicaoAtual = 0; }
+
         resumos[posicaoAtual] = tema + ": " + resumo;
         conteudo[posicaoAtual] = tema;
 
-        if (posicaoAtual == resumos.length) { posicaoAtual = 0; }
-        else { posicaoAtual++; }
+        posicaoAtual++;
 
 //        for (int i = 0; i < resumos.length; i++) {
 //            if (resumos[i] == null) {

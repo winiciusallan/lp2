@@ -1,0 +1,53 @@
+Coisa
+---
+---
++ main(args: Strig[]): void
+---
+
+Disciplina
+association Coisa
+---
+- nomeDaDisciplina: String
+- horasDeEstudo: int
+- notas: double[]
+- pesos: int[]
+---
++ Disciplina(nomeDaDisciplina: String)
++ Disciplina(nomeDaDisciplina: String, numeroDeNotas: int)
++ Disciplina(nomeDaDisciplina: String, numeroDeNotas: int, pesos: int[])
++ getNomeDaDisciplina(): String
++ getHorasDeEstudo(): int
++ cadastraHoras(horas: int): void
++ cadastraNota(nota: int, valorNota: double): void
++ calculaMedia(): double
++ calculaMediaPondera(): double
+---
+
+Descanso
+association Coisa
+---
+- horasDeDescanso: int
+- numerosDeSemana: int
+---
++ Descanso()
++ defineHorasDescando(valor: int): void
++ defineNumerosSemanais(valor: int): void
++ getStatusGeral(): String
+---
+
+RegistroTempoOnline
+association Coisa
+---
+- nomeDaDisciplia: String
+- tempoGastoOnline: int
+- tempoOnlineEsperado: int
+---
++ RegistroTempoOnline(nomeDaDisciplina: String)
++ RegistroTempoOnline(nomeDaDisciplina: String, tempoOnlineEsperado: int)
++ getNomeDaDisciplina(): String
++ getTempoGastoOnline(): int
++ getTempoOnlineEsperado(): int
++ adicionaTempoOnline(tempo: int): void
++ atingiuMetaTempoOnline(): boolean
++ toString(): String
+---
