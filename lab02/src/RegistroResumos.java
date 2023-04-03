@@ -19,6 +19,12 @@ public class RegistroResumos {
      */
     private int posicaoAtual;
 
+    /**
+     * Construtor para o registro dos resumos, criando um vetor para armazenar os resumos e outro vetor com os temas
+     * dos respectivos resumos.
+     *
+     * @param numeroDeResumos número máximo de resumos que serão armazenados.
+     */
     public RegistroResumos(int numeroDeResumos) {
         this.resumos = new String[numeroDeResumos];
         this.conteudo = new String[numeroDeResumos];
@@ -27,6 +33,11 @@ public class RegistroResumos {
 
     public String[] pegaResumos() { return resumos; }
 
+    /**
+     * Método que realiza da contagem de resumos no vetor. Verifica quais elementos não são null e incrementa a contagem.
+     *
+     * @return a quantidade de resumos armazenados.
+     */
     public int conta() {
         int cont = 0;
 
@@ -39,6 +50,13 @@ public class RegistroResumos {
         return cont;
     }
 
+    /**
+     * Adiciona um resumo no array.
+     * Caso o vetor já esteja totalmente completo, o primeiro é substituido, depois o segundo e assim por diante.
+     *
+     * @param tema o tema ao qual o resumo se refere
+     * @param resumo o resumo
+     */
     public void adiciona(String tema, String resumo) {
 
         if (posicaoAtual == resumos.length) { posicaoAtual = 0; }
@@ -47,16 +65,14 @@ public class RegistroResumos {
         conteudo[posicaoAtual] = tema;
 
         posicaoAtual++;
-
-//        for (int i = 0; i < resumos.length; i++) {
-//            if (resumos[i] == null) {
-//                resumos[i] = tema + ": " + resumo;
-//                conteudo[i] = tema;
-//                return;
-//            }
-//        }
     }
 
+    /**
+     * Verifica no array se existe um resumo sobre um determinado tema.
+     *
+     * @param tema o tema a ser procurado no vetor.
+     * @return um booleano indicando se existe ou não existe.
+     */
     public boolean temResumo(String tema) {
 
         for (int i = 0; i < conta(); i++) {
@@ -88,6 +104,11 @@ public class RegistroResumos {
         return resultados;
     }
 
+    /**
+     * Imprime um relatório dos resumos.
+     *
+     * @return a quantidade de resumos que foram cadastrados e todos os conteúdos cadastrados.
+     */
     public String imprimeResumos() {
         String primeiraLinha = "- " + conta() + " resumos(s) cadastrado(s)";
         StringBuilder segundaLinha = new StringBuilder("- "); // StringBuilder para criar uma string concatenada;

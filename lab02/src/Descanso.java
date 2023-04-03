@@ -16,12 +16,15 @@ public class Descanso {
      */
     private int numerosDeSemana;
 
+    private String emoji;
+
     /**
      * Construtor para Descanso, definindo valores padrão das horas de descanso e do número de semanas.
      */
     public Descanso() {
         this.horasDeDescanso = 0;
         this.numerosDeSemana = 1;
+        this.emoji = "";
     }
 
     /**
@@ -42,6 +45,8 @@ public class Descanso {
         this.numerosDeSemana = valor;
     }
 
+    public void definirEmoji(String emoji) { this.emoji = " - " + emoji; }
+
     /**
      * Verifica se o aluno descansou as 26 horas estabelecidas por semana e verifica se está cansado ou descansado.
      *
@@ -49,8 +54,8 @@ public class Descanso {
      */
     public String getStatusGeral() {
         if (horasDeDescanso / numerosDeSemana >= 26) {
-            return "descansado";
+            return "descansado" + emoji;
         }
-        return "cansado";
+        return "cansado" + emoji;
     }
 }

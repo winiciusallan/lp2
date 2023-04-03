@@ -9,6 +9,8 @@ public class CoisaBonus {
         System.out.println("----");
         registrarResumos();
         System.out.println("----");
+        registrarDescanso();
+        System.out.println("----");
     }
 
     public static void controlarDisciplina() {
@@ -19,6 +21,22 @@ public class CoisaBonus {
         prog2.cadastraNota(2, 7.0);
         System.out.println(prog2.calculaMediaPonderada());
         System.out.println(prog2);
+    }
+
+    public static void registrarDescanso() {
+        Descanso descanso = new Descanso();
+        descanso.definirEmoji("<(^_^<)");
+        System.out.println(descanso.getStatusGeral());
+        descanso.defineHorasDescanso(30);
+        descanso.defineNumeroSemanas(1);
+        descanso.definirEmoji("");
+        System.out.println(descanso.getStatusGeral());
+        descanso.defineHorasDescanso(26);
+        descanso.defineNumeroSemanas(2);
+        System.out.println(descanso.getStatusGeral());
+        descanso.defineHorasDescanso(26);
+        descanso.defineNumeroSemanas(1);
+        System.out.println(descanso.getStatusGeral());
     }
 
     private static void registrarResumos() {

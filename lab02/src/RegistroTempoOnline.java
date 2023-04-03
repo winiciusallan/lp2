@@ -44,6 +44,10 @@ public class RegistroTempoOnline {
 
     public String getNomeDaDisciplina() { return nomeDaDisciplina; }
 
+    /**
+     *
+     * @return
+     */
     public int getTempoGastoOnline() { return tempoGastoOnline; }
 
     public int getTempoOnlineEsperado() { return tempoOnlineEsperado; }
@@ -52,10 +56,18 @@ public class RegistroTempoOnline {
         this.tempoGastoOnline += tempo;
     }
 
+    /**
+     * Método para verificar se o aluno atingiu a meta de tempo online
+     *
+     * @return um booleano indicando seu atingiu ou não
+     */
     public boolean atingiuMetaTempoOnline() {
         return tempoGastoOnline >= tempoOnlineEsperado;
     }
 
+    /**
+     * @return Um relatório com o nome da disciplina, as horas gastas e as horas esperadas
+     */
     @Override
     public String toString() {
         return getNomeDaDisciplina()
