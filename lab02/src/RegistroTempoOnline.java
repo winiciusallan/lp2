@@ -44,10 +44,6 @@ public class RegistroTempoOnline {
 
     public String getNomeDaDisciplina() { return nomeDaDisciplina; }
 
-    /**
-     *
-     * @return
-     */
     public int getTempoGastoOnline() { return tempoGastoOnline; }
 
     public int getTempoOnlineEsperado() { return tempoOnlineEsperado; }

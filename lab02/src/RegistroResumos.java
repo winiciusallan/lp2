@@ -1,4 +1,7 @@
 /**
+ * Representação de um registro de resumos onde é possível armazenar os resumos dos alunos e os seus
+ * respectivos conteúdos dentro de um vetor. Além de fazer uma busca utilizando uma palavra-chave
+ * e imprimir um relatório com os resumos cadastrados.
  *
  * @author Winicius Allan - 122110397
  */
