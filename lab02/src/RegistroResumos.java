@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Representação de um registro de resumos onde é possível armazenar os resumos dos alunos e os seus
  * respectivos conteúdos dentro de um vetor. Além de fazer uma busca utilizando uma palavra-chave
@@ -93,17 +96,16 @@ public class RegistroResumos {
      * @param chaveDeBusca a palavra que irá verificar se contém
      * @return retorna um vetor com os temas dos resumos que contém a chave de busca
      */
-    public String[] busca(String chaveDeBusca) {
-        String[] resultados = new String[conta()];
+    public ArrayList<String> busca(String chaveDeBusca) {
+        ArrayList<String> resultados = new ArrayList<>();
 
         for (int i = 0; i < resumos.length; i++) {
-            if (resumos[i] == null) { return resultados; }
-
             if (resumos[i].contains(chaveDeBusca)) { // Verifica se contem a chave dentro dos resumos
-                resultados[i] = conteudo[i];
+                resultados.add(conteudo[i]);
             }
         }
 
+        Collections.sort(resultados);
         return resultados;
     }
 
