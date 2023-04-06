@@ -37,7 +37,7 @@ public class CoisaCLI {
             case X -> sair();
         }
     }
-    
+
     private static void registrarTempoOnline(String[] args) {
         RegistroTempoOnline tempoLP2 = new RegistroTempoOnline("LP2", 30);
         tempoLP2.adicionaTempoOnline(Integer.parseInt(args[2]));
@@ -93,4 +93,4 @@ public class CoisaCLI {
     private static void sair() {
         System.exit(0); // Status 0 -> O programa terminou bem.
     }
- }
+}
