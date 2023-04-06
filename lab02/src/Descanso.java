@@ -16,7 +16,20 @@ public class Descanso {
      */
     private int numerosDeSemana;
 
+    /**
+     * Emoji que representa como o aluno está.
+     */
     private String emoji;
+
+    /**
+     * O estado atual do aluno. Podendo estar cansado ou descansado.
+     */
+    private String atualEstado;
+
+    /**
+     * O próximo estado do aluno que será registrado.
+     */
+    private String proxEstado;
 
     /**
      * Construtor para Descanso, definindo valores padrão das horas de descanso e do número de semanas.
@@ -25,6 +38,8 @@ public class Descanso {
         this.horasDeDescanso = 0;
         this.numerosDeSemana = 1;
         this.emoji = "";
+        this.atualEstado = "";
+        this.proxEstado = "";
     }
 
     /**
@@ -45,7 +60,7 @@ public class Descanso {
         this.numerosDeSemana = valor;
     }
 
-    public void definirEmoji(String emoji) { this.emoji = " - " + emoji; }
+    public void definirEmoji(String emoji) { this.emoji = emoji; }
 
     /**
      * Verifica se o aluno descansou as 26 horas estabelecidas por semana e verifica se está cansado ou descansado.
@@ -53,9 +68,25 @@ public class Descanso {
      * @return o status do aluno.
      */
     public String getStatusGeral() {
+
         if (horasDeDescanso / numerosDeSemana >= 26) {
-            return "descansado" + emoji;
+            if (numerosDeSemana == 1) {
+                this.atualEstado = "descansado";
+                this.proxEstado = atualEstado;
+            } else {
+                this.proxEstado = "descansado";
+            }
+        } else {
+            if (numerosDeSemana == 1) { this.atualEstado = "cansado"; }
+            else {
+                this.proxEstado = "cansado";
+            }
         }
-        return "cansado" + emoji;
+
+        if (proxEstado.equals(atualEstado)) {
+            return proxEstado + " - " + this.emoji;
+        }
+
+        return proxEstado;
     }
 }

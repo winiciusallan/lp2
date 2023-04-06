@@ -7,7 +7,7 @@
  */
 public class RegistroTempoOnline {
     /**
-     * O nome da disciplina que será monitorada
+     * O nome da disciplina que será monitorada.
      */
     private String nomeDaDisciplina;
 

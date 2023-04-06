@@ -60,8 +60,8 @@ public class RegistroResumos {
      * Adiciona um resumo no array.
      * Caso o vetor já esteja totalmente completo, o primeiro é substituido, depois o segundo e assim por diante.
      *
-     * @param tema o tema ao qual o resumo se refere
-     * @param resumo o resumo
+     * @param tema o tema ao qual o resumo se refere.
+     * @param resumo o resumo.
      */
     public void adiciona(String tema, String resumo) {
 
@@ -91,15 +91,17 @@ public class RegistroResumos {
     }
 
     /**
-     * Método para buscar se os resumos contém uma palavra-chave
+     * Método para buscar se os resumos contêm uma palavra-chave.
      *
-     * @param chaveDeBusca a palavra que irá verificar se contém
-     * @return retorna um vetor com os temas dos resumos que contém a chave de busca
+     * @param chaveDeBusca a palavra que irá verificar se contém.
+     * @return retorna um vetor ordenado com os temas dos resumos que contém a chave de busca.
      */
     public ArrayList<String> busca(String chaveDeBusca) {
         ArrayList<String> resultados = new ArrayList<>();
 
         for (int i = 0; i < resumos.length; i++) {
+            if (resumos[i] == null) { break; }
+
             if (resumos[i].contains(chaveDeBusca)) { // Verifica se contem a chave dentro dos resumos
                 resultados.add(conteudo[i]);
             }

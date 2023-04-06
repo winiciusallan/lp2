@@ -24,14 +24,14 @@ public class Disciplina {
     private double[] notas;
 
     /**
-     * Um vetor com os pesos das notas (caso exista). Seção bônus
+     * Um vetor com os pesos das notas (caso exista). Seção bônus.
      */
     private int[] pesos;
 
     /**
-     * Construtor para criação da disciplina
+     * Construtor para criação da disciplina.
      *
-     * @param nomeDaDisciplina O nome da disciplina criada
+     * @param nomeDaDisciplina O nome da disciplina criada.
      */
     public Disciplina(String nomeDaDisciplina) {
         this.nomeDaDisciplina = nomeDaDisciplina;
@@ -40,10 +40,10 @@ public class Disciplina {
     }
 
     /**
-     * Construtor para criação da disciplina e suas notas
+     * Construtor para criação da disciplina e suas notas.
      *
-     * @param nomeDaDisciplina O nome da disciplina criada
-     * @param numeroDeNotas A quantidade de notas que aquela disciplina terá
+     * @param nomeDaDisciplina O nome da disciplina criada.
+     * @param numeroDeNotas A quantidade de notas que aquela disciplina terá.
      */
     public Disciplina(String nomeDaDisciplina, int numeroDeNotas){
         this.nomeDaDisciplina = nomeDaDisciplina;
@@ -52,11 +52,11 @@ public class Disciplina {
     }
 
     /**
-     * Construtor para a criação da disciplina com notas ponderadas
+     * Construtor para a criação da disciplina com notas ponderadas.
      *
-     * @param nomeDaDisciplina O nome da disciplina criada
-     * @param numeroDeNotas A quantidade de notas que a disciplina terá
-     * @param pesos Um array de inteios com o peso de cada nota
+     * @param nomeDaDisciplina O nome da disciplina criada.
+     * @param numeroDeNotas A quantidade de notas que a disciplina terá.
+     * @param pesos Um array de inteios com o peso de cada nota.
      */
     public Disciplina(String nomeDaDisciplina, int numeroDeNotas, int[] pesos) {
         this.nomeDaDisciplina = nomeDaDisciplina;
@@ -66,8 +66,8 @@ public class Disciplina {
     }
 
     /**
-     * Método para acessar o nome da disciplina
-     * @return o nome da Disciplina
+     * Método para acessar o nome da disciplina.
+     * @return o nome da Disciplina.
      */
     public String getNomeDaDisciplina() {
         return nomeDaDisciplina;
@@ -86,9 +86,9 @@ public class Disciplina {
     public void cadastraHoras(int horas) { this.horasDeEstudo += horas; }
 
     /**
-     * Método para cadastrar no vetor uma nota da disciplina
+     * Método para cadastrar no vetor uma nota da disciplina.
      *
-     * @param nota O índice da nota que vai ser adicionada
+     * @param nota O índice da nota que vai ser adicionada.
      * @param valorNota O valor da nota que o aluno tirou em ponto flutuante.
      */
     public void cadastraNota(int nota, double valorNota) {
@@ -126,7 +126,7 @@ public class Disciplina {
     }
 
     /**
-     * Método para dizer se o aluno foi aprovado ou não. O aluno é aprovado quando sua média é maior ou igual a 7.0
+     * Método para dizer se o aluno foi aprovado ou não. O aluno é aprovado quando sua média é maior ou igual a 7.0.
      *
      * @return um boolean indicando true caso o aluno tiver passado, e false caso tenha reprovado.
      */
