@@ -14,11 +14,14 @@ public class Agenda {
 
     private Contato[] contatos; // Representação dos contatos.
 
+    private Contato[] favoritos;
+
     /**
      * Cria uma agenda.
      */
     public Agenda() {
         this.contatos = new Contato[TAMANHO_AGENDA];
+        this.favoritos = new Contato[10];
     }
 
     /**
@@ -47,10 +50,10 @@ public class Agenda {
      */
     public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
         try {
-            Contato contato = new Contato(nome, sobrenome, telefone);
+            Contato contato = new Contato(nome.trim(), sobrenome.trim(), telefone.trim());
 
-            // Verifica se os campos foram preenchidos.
-            if (nome.trim().equals("") || sobrenome.trim().equals("") || telefone.trim().equals("")) {
+            // Verifica se todos os campos foram preenchidos.
+            if (nome.equals("") || telefone.equals("")) {
                 throw new IllegalArgumentException();
             }
             if (!existeContato(contato)) {
@@ -69,6 +72,14 @@ public class Agenda {
         }
     }
 
+    public void adicionaFavorito(int posicao, Contato contato) {
+        if (!contato.isFavorito()) {
+            favoritos[posicao - 1] = contato;
+            contato.setFavorito(true);
+            System.out.println("CONTATO FAVORITADO NA POSIÇÃO " + posicao);
+        }
+
+    }
     private boolean existeContato(Contato contato) {
         for (Contato pessoa : contatos) {
             if (pessoa == null) { continue; }

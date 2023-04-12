@@ -5,6 +5,7 @@ public class Contato {
     private String nome;
     private String sobrenome;
     private String numero;
+    private boolean favorito;
 
     public Contato(String nome, String sobrenome, String numero) {
         this.nome = nome;
@@ -18,6 +19,10 @@ public class Contato {
 
     public String getNumero() { return this.numero; }
 
+    public boolean isFavorito() { return this.favorito; }
+
+    public void setFavorito(boolean favorito) { this.favorito = favorito; }
+
     public boolean equals(Contato contato) {
         return this.getNome().trim().equals(contato.getNome().trim())
                 && this.getSobrenome().trim().equals(contato.getSobrenome().trim());
@@ -26,10 +31,7 @@ public class Contato {
     @Override
     public String toString() {
         return getNome()
-                + " "
-                + getSobrenome()
-                + " [ "
-                + getNumero()
-                + " ]";
+                + " " + getSobrenome()
+                + "\n" + getNumero();
     }
 }
