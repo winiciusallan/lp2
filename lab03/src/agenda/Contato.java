@@ -19,7 +19,17 @@ public class Contato {
     public String getNumero() { return this.numero; }
 
     public boolean equals(Contato contato) {
-        return this.getNome().equals(contato.getNome())
-                && this.getSobrenome().equals(contato.getSobrenome());
+        return this.getNome().trim().equals(contato.getNome().trim())
+                && this.getSobrenome().trim().equals(contato.getSobrenome().trim());
+    }
+
+    @Override
+    public String toString() {
+        return getNome()
+                + " "
+                + getSobrenome()
+                + " [ "
+                + getNumero()
+                + " ]";
     }
 }

@@ -46,28 +46,32 @@ public class Agenda {
      * @param telefone Telefone do contato.
      */
     public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
-        Contato contato = new Contato(nome, sobrenome, telefone);
         try {
+            Contato contato = new Contato(nome, sobrenome, telefone);
+
             // Verifica se os campos foram preenchidos.
             if (nome.trim().equals("") || sobrenome.trim().equals("") || telefone.trim().equals("")) {
-                throw new NullPointerException();
-            } else if (existeContato(contato)) { // Verifica se o usuário já foi cadastrado.
-                throw new InputMismatchException();
+                throw new IllegalArgumentException();
+            }
+            if (!existeContato(contato)) {
+                this.contatos[posicao - 1] = contato;
+                System.out.println("\nCADASTRO REALIZADO!");
             } else {
-                this.contatos[posicao] = contato;
+                throw new Exception();
             }
 
         } catch (ArrayIndexOutOfBoundsException err) {
-            System.err.println("POSIÇÃO INVÁLIDA!");
-        } catch (NullPointerException err) {
-            System.err.println("CONTATO INVÁLIDO!");
-        } catch (InputMismatchException err) {
-            System.err.println("USUÁRIO JÁ CADASTRADO!");
+            System.err.println("--> POSIÇÃO INVÁLIDA!");
+        } catch (IllegalArgumentException err) {
+            System.err.println("--> CONTATO INVÁLIDO!");
+        } catch (Exception err) {
+            System.err.println("--> CONTATO JÁ CADASTRADO!");
         }
     }
 
     private boolean existeContato(Contato contato) {
         for (Contato pessoa : contatos) {
+            if (pessoa == null) { continue; }
             if (contato.equals(pessoa)) { return true; }
         }
         return false;
