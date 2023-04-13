@@ -105,21 +105,10 @@ public class MainAgenda {
      * @param agenda A agenda.
      * @param scanner Scanner para capturar qual contato.
      */
-    private static void exibeContato(Agenda agenda, Scanner scanner) { // Transferir método pra Agenda
+    private static void exibeContato(Agenda agenda, Scanner scanner) {
         System.out.print("\nQual contato> ");
         int posicao = scanner.nextInt();
-        try {
-            Contato contato = agenda.getContato(posicao - 1);
-
-            if (contato != null) {
-                System.out.println("\nDados do contato:\n"
-                        + contato);
-            } else {
-                throw new IndexOutOfBoundsException();
-            }
-        } catch (IndexOutOfBoundsException err) {
-            System.err.println("--> POSIÇÃO INVÁLIDA!");
-        }
+        agenda.exibeContato(posicao);
     }
 
     /**

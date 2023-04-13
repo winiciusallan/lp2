@@ -5,8 +5,7 @@ import java.util.InputMismatchException;
 /**
  * Uma agenda que mantém uma lista de contatos com posições. Podem existir 100 contatos.
  *
- * @author nazareno
- *
+ * @author Winicius Allan
  */
 public class Agenda {
 
@@ -38,7 +37,7 @@ public class Agenda {
      * @return Dados do contato. Null se não há contato na posição.
      */
     public Contato getContato(int posicao) {
-        return contatos[posicao];
+        return contatos[posicao - 1];
     }
 
     /**
@@ -57,6 +56,10 @@ public class Agenda {
                 throw new IllegalArgumentException();
             }
             if (!existeContato(contato)) {
+                if (posicao < 1 || posicao > 100) { // Posição inválida
+                    throw new ArrayIndexOutOfBoundsException();
+                }
+
                 this.contatos[posicao - 1] = contato;
                 System.out.println("\nCADASTRO REALIZADO!");
             } else {
@@ -78,7 +81,21 @@ public class Agenda {
             contato.setFavorito(true);
             System.out.println("CONTATO FAVORITADO NA POSIÇÃO " + posicao);
         }
+    }
 
+    public void exibeContato(int posicao) {
+        try {
+            Contato contato = this.getContato(posicao - 1);
+
+            if (contato != null) {
+                System.out.println("\nDados do contato:\n"
+                        + contato);
+            } else {
+                throw new IndexOutOfBoundsException();
+            }
+        } catch (IndexOutOfBoundsException err) {
+            System.err.println("--> POSIÇÃO INVÁLIDA!");
+        }
     }
     private boolean existeContato(Contato contato) {
         for (Contato pessoa : contatos) {

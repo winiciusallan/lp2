@@ -23,9 +23,14 @@ public class Contato {
 
     public void setFavorito(boolean favorito) { this.favorito = favorito; }
 
-    public boolean equals(Contato contato) {
-        return this.getNome().trim().equals(contato.getNome().trim())
-                && this.getSobrenome().trim().equals(contato.getSobrenome().trim());
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) { return false; }
+        if (!(obj instanceof Contato)) { return false; }
+
+        Contato other = (Contato) obj;
+        return this.getNome().trim().equals(other.getNome().trim())
+                && this.getSobrenome().trim().equals(other.getSobrenome().trim());
     }
 
     @Override
