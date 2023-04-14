@@ -47,7 +47,7 @@ public class Agenda {
      * @param sobrenome Sobrenome do contato.
      * @param telefone Telefone do contato.
      */
-    public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
+    public boolean cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
         try {
             Contato contato = new Contato(nome.trim(), sobrenome.trim(), telefone.trim());
 
@@ -57,22 +57,22 @@ public class Agenda {
             }
             if (!existeContato(contato)) {
                 if (posicao < 1 || posicao > 100) { // Posição inválida
-                    throw new ArrayIndexOutOfBoundsException();
+                    System.err.println("--> POSIÇÃO INVÁLIDA!");
+                    return false;
                 }
 
                 this.contatos[posicao - 1] = contato;
                 System.out.println("\nCADASTRO REALIZADO!");
+                return true;
             } else {
                 throw new Exception();
             }
-
-        } catch (ArrayIndexOutOfBoundsException err) {
-            System.err.println("--> POSIÇÃO INVÁLIDA!");
         } catch (IllegalArgumentException err) {
             System.err.println("--> CONTATO INVÁLIDO!");
         } catch (Exception err) {
             System.err.println("--> CONTATO JÁ CADASTRADO!");
         }
+        return false;
     }
 
     public void adicionaFavorito(int posicao, Contato contato) {
@@ -85,7 +85,7 @@ public class Agenda {
 
     public void exibeContato(int posicao) {
         try {
-            Contato contato = this.getContato(posicao - 1);
+            Contato contato = this.getContato(posicao);
 
             if (contato != null) {
                 System.out.println("\nDados do contato:\n"
