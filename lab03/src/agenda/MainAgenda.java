@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Interface com menus texto para manipular uma agenda de contatos.
+ * Uma representação de um menu por meio de uma interface no console, onde o usuário é capaz de
+ * fazer uso das funcionalidades uma agenda, podendo criar, exibir, listar e favoritar seus contatos.
  *
- * @author Winicius Allan - 122110397
- *
+ * @author Winicius Allan - 122110397.
  */
 public class MainAgenda {
 
@@ -48,6 +48,7 @@ public class MainAgenda {
                         "(C)adastrar Contato\n" +
                         "(L)istar Contatos\n" +
                         "(E)xibir Contato\n" +
+                        "(F)avoritos\n" +
                         "(A)dicionar Favorito\n" +
                         "(R)emover Favorito\n" +
                         "(S)air\n" +
@@ -74,8 +75,15 @@ public class MainAgenda {
             case "E":
                 exibeContato(agenda, scanner);
                 break;
+            case "F":
+                listaFavoritos(agenda);
+                break;
             case "A":
                 adicionaFavorito(agenda, scanner);
+                break;
+            case "R":
+
+                break;
             case "S":
                 sai();
                 break;
@@ -95,6 +103,16 @@ public class MainAgenda {
         for (int i = 0; i < contatos.length; i++) {
             if (contatos[i] != null) {
                 System.out.println(formataContato(i + 1, contatos[i]));
+            }
+        }
+    }
+
+    private static void listaFavoritos(Agenda agenda) {
+        System.out.println("\nLista de favoritos: ");
+        Contato[] favoritos = agenda.getFavoritos();
+        for (int i = 0; i < favoritos.length; i++) {
+            if (favoritos[i] != null) {
+                System.out.println(formataContato(i + 1, favoritos[i]));
             }
         }
     }
@@ -146,9 +164,15 @@ public class MainAgenda {
     private static void adicionaFavorito(Agenda agenda, Scanner scanner) {
         System.out.print("\nContato> ");
         int numContato = scanner.nextInt();
+        System.out.print("Posição> ");
+        int posicao = scanner.nextInt();
+        agenda.adicionaFavorito(posicao, agenda.getContato(numContato));
+    }
+
+    private static void removeFavorito(Agenda agenda, Scanner scanner) {
         System.out.print("\nPosição> ");
         int posicao = scanner.nextInt();
-        agenda.adicionaFavorito(posicao, agenda.getContato(numContato - 1));
+        agenda.removeFavorito(posicao);
     }
     /**
      * Sai da aplicação.

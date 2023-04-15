@@ -1,7 +1,5 @@
 package agenda;
 
-import java.util.InputMismatchException;
-
 /**
  * Uma agenda que mantém uma lista de contatos com posições. Podem existir 100 contatos.
  *
@@ -30,6 +28,8 @@ public class Agenda {
     public Contato[] getContatos() {
         return this.contatos.clone();
     }
+
+    public Contato[] getFavoritos() { return this.favoritos; }
 
     /**
      * Acessa os dados de um contato específico.
@@ -75,27 +75,42 @@ public class Agenda {
         return false;
     }
 
-    public void adicionaFavorito(int posicao, Contato contato) {
+    public boolean adicionaFavorito(int posicao, Contato contato) {
         if (!contato.isFavorito()) {
             favoritos[posicao - 1] = contato;
             contato.setFavorito(true);
-            System.out.println("CONTATO FAVORITADO NA POSIÇÃO " + posicao);
+            System.out.println("\nCONTATO FAVORITADO NA POSIÇÃO " + posicao);
+            return true;
         }
+        System.err.println("--> CONTATO JÁ FAVORITADO!");
+        return false;
     }
 
-    public void exibeContato(int posicao) {
+    public boolean removeFavorito(int posicao) {
+        Contato contato = getContato(posicao);
+        if (contato.isFavorito()) {
+            contato.setFavorito(false);
+            return true;
+        }
+        System.err.println("--> CONTATO JÁ NÃO É FAVORITO!");
+        return false;
+    }
+
+    public boolean exibeContato(int posicao) {
         try {
             Contato contato = this.getContato(posicao);
 
             if (contato != null) {
                 System.out.println("\nDados do contato:\n"
                         + contato);
+                return true;
             } else {
                 throw new IndexOutOfBoundsException();
             }
         } catch (IndexOutOfBoundsException err) {
             System.err.println("--> POSIÇÃO INVÁLIDA!");
         }
+        return false;
     }
     private boolean existeContato(Contato contato) {
         for (Contato pessoa : contatos) {

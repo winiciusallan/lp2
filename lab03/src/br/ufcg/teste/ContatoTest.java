@@ -3,6 +3,7 @@ package br.ufcg.teste;
 import agenda.Contato;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,5 +24,4 @@ public class ContatoTest {
         assertEquals(contatoBase, new Contato("   Winicius    ", "Allan", "839984567"));
         assertNotEquals(contatoBase, new Contato("Eliane", "Araújo", "83 21012101"));
     }
-
 }

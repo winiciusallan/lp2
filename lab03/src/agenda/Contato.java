@@ -35,8 +35,12 @@ public class Contato {
 
     @Override
     public String toString() {
-        return getNome()
+        String fav = "";
+        if (isFavorito()) { fav = "❤️ "; }
+
+        return fav
+                + getNome()
                 + " " + getSobrenome()
                 + "\n" + getNumero();
-    }
+        }
 }
