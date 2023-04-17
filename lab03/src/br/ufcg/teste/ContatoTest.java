@@ -24,4 +24,14 @@ public class ContatoTest {
         assertEquals(contatoBase, new Contato("   Winicius    ", "Allan", "839984567"));
         assertNotEquals(contatoBase, new Contato("Eliane", "Araújo", "83 21012101"));
     }
+
+    @Test
+    void testNomeNull() {
+        assertThrows(NullPointerException.class,
+                () -> new Contato(null, "Gaudêncio", "21010000")); // Nome null
+        assertThrows(NullPointerException.class,
+                () -> new Contato("Matheus", null, "21010000")); // Sobrenome null
+        assertThrows(NullPointerException.class,
+                () -> new Contato("Matheus", "Gaudêncio", null)); // Número null
+    }
 }

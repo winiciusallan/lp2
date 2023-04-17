@@ -1,5 +1,7 @@
 package agenda;
 
+import java.util.Objects;
+
 public class Contato {
 
     private String nome;
@@ -8,6 +10,9 @@ public class Contato {
     private boolean favorito;
 
     public Contato(String nome, String sobrenome, String numero) {
+        if (nome == null|| sobrenome == null || numero == null) {
+            throw new NullPointerException();
+        }
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.numero = numero;
@@ -22,6 +27,11 @@ public class Contato {
     public boolean isFavorito() { return this.favorito; }
 
     public void setFavorito(boolean favorito) { this.favorito = favorito; }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, sobrenome);
+    }
 
     @Override
     public boolean equals(Object obj) {

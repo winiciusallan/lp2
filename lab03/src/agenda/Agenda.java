@@ -1,5 +1,7 @@
 package agenda;
 
+import java.util.InputMismatchException;
+
 /**
  * Uma agenda que mantém uma lista de contatos com posições. Podem existir 100 contatos.
  *
@@ -7,17 +9,21 @@ package agenda;
  */
 public class Agenda {
 
-    private static final int TAMANHO_AGENDA = 100;
-
+    /**
+     * Um vetor que armazena os contatos da agenda.
+     */
     private Contato[] contatos; // Representação dos contatos.
 
+    /**
+     * Um vetor que armazena os contatos da agenda que são favoritos.
+     */
     private Contato[] favoritos;
 
     /**
-     * Cria uma agenda.
+     * Cria uma agenda. O array de contatos inicia com 100 posições.
      */
     public Agenda() {
-        this.contatos = new Contato[TAMANHO_AGENDA];
+        this.contatos = new Contato[100];
         this.favoritos = new Contato[10];
     }
 
@@ -29,6 +35,10 @@ public class Agenda {
         return this.contatos.clone();
     }
 
+    /**
+     * Acessa o vetor que armazena os favoritos.
+     * @return Array com contatos favoritados.
+     */
     public Contato[] getFavoritos() { return this.favoritos; }
 
     /**
@@ -47,71 +57,49 @@ public class Agenda {
      * @param sobrenome Sobrenome do contato.
      * @param telefone Telefone do contato.
      */
-    public boolean cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
-        try {
-            Contato contato = new Contato(nome.trim(), sobrenome.trim(), telefone.trim());
+    public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
+        Contato contato = new Contato(nome.trim(), sobrenome.trim(), telefone.trim());
 
-            // Verifica se todos os campos foram preenchidos.
-            if (nome.equals("") || telefone.equals("")) {
-                throw new IllegalArgumentException();
-            }
-            if (!existeContato(contato)) {
-                if (posicao < 1 || posicao > 100) { // Posição inválida
-                    System.err.println("--> POSIÇÃO INVÁLIDA!");
-                    return false;
-                }
-
-                this.contatos[posicao - 1] = contato;
-                System.out.println("\nCADASTRO REALIZADO!");
-                return true;
-            } else {
-                throw new Exception();
-            }
-        } catch (IllegalArgumentException err) {
-            System.err.println("--> CONTATO INVÁLIDO!");
-        } catch (Exception err) {
-            System.err.println("--> CONTATO JÁ CADASTRADO!");
+        // Verifica se todos os campos foram preenchidos.
+        if (nome.equals("") || telefone.equals("")) {
+            throw new IllegalArgumentException();
         }
-        return false;
+        if (!existeContato(contato)) {
+            this.contatos[posicao - 1] = contato;
+        } else {
+            throw new InputMismatchException();
+        }
     }
 
-    public boolean adicionaFavorito(int posicao, Contato contato) {
+    /**
+     * Adiciona o status de favorito em um contato já cadastrado e o coloca na lista.
+     * @param posicao Posição em que o contato ficará armazenado no vetor de favoritos.
+     * @param contato O contato que irá ser adicionado.
+     */
+    public void adicionaFavorito(int posicao, Contato contato) {
         if (!contato.isFavorito()) {
             favoritos[posicao - 1] = contato;
             contato.setFavorito(true);
-            System.out.println("\nCONTATO FAVORITADO NA POSIÇÃO " + posicao);
-            return true;
+        } else {
+            throw new IllegalArgumentException();
         }
-        System.err.println("--> CONTATO JÁ FAVORITADO!");
-        return false;
     }
 
-    public boolean removeFavorito(int posicao) {
+    /**
+     * Remove o status de favorito em um contato já cadastrado e o remove da lista.
+     * @param posicao Posição do contato que será removido do vetor de favoritos.
+     */
+    public void removeFavorito(int posicao) {
         Contato contato = getContato(posicao);
+
         if (contato.isFavorito()) {
+            favoritos[posicao - 1] = null;
             contato.setFavorito(false);
-            return true;
+        } else {
+            throw new IllegalArgumentException();
         }
-        System.err.println("--> CONTATO JÁ NÃO É FAVORITO!");
-        return false;
     }
-
-    public boolean exibeContato(int posicao) {
-        try {
-            Contato contato = this.getContato(posicao);
-
-            if (contato != null) {
-                System.out.println("\nDados do contato:\n"
-                        + contato);
-                return true;
-            } else {
-                throw new IndexOutOfBoundsException();
-            }
-        } catch (IndexOutOfBoundsException err) {
-            System.err.println("--> POSIÇÃO INVÁLIDA!");
-        }
-        return false;
-    }
+    
     private boolean existeContato(Contato contato) {
         for (Contato pessoa : contatos) {
             if (pessoa == null) { continue; }

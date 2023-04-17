@@ -2,6 +2,7 @@ package agenda;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -82,7 +83,7 @@ public class MainAgenda {
                 adicionaFavorito(agenda, scanner);
                 break;
             case "R":
-
+                removeFavorito(agenda, scanner);
                 break;
             case "S":
                 sai();
@@ -126,7 +127,15 @@ public class MainAgenda {
     private static void exibeContato(Agenda agenda, Scanner scanner) {
         System.out.print("\nQual contato> ");
         int posicao = scanner.nextInt();
-        agenda.exibeContato(posicao);
+        try {
+            Contato contato = agenda.getContato(posicao);
+
+            if (contato != null) {
+                System.out.println("\nDados do contato: " + contato);
+            }
+        } catch (IndexOutOfBoundsException err) {
+            System.err.println("--> POSIÇÃO INVÁLIDA!");
+        }
     }
 
     /**
@@ -158,7 +167,18 @@ public class MainAgenda {
         String sobrenome = scanner.nextLine();
         System.out.print("\nTelefone> ");
         String telefone = scanner.nextLine();
-        agenda.cadastraContato(posicao, nome, sobrenome, telefone);
+        try {
+            agenda.cadastraContato(posicao, nome, sobrenome, telefone);
+
+            System.out.println("USUARIO CADASTRADO NA POSIÇÃO " + posicao);
+        } catch (IllegalArgumentException err) {
+            System.err.println("-> CONTATO INVÁLIDO");
+        } catch (InputMismatchException err) {
+            System.err.println("-> USUÁRIO JÁ CADASTRADO");
+        } catch (IndexOutOfBoundsException err) {
+            System.err.println("-> POSIÇÃO INVÁLIDA");
+        }
+
     }
 
     private static void adicionaFavorito(Agenda agenda, Scanner scanner) {
@@ -166,13 +186,27 @@ public class MainAgenda {
         int numContato = scanner.nextInt();
         System.out.print("Posição> ");
         int posicao = scanner.nextInt();
-        agenda.adicionaFavorito(posicao, agenda.getContato(numContato));
+        try {
+            agenda.adicionaFavorito(posicao, agenda.getContato(numContato));
+
+            System.out.println("\nCONTATO FAVORITADO NA POSIÇÃO " + posicao);
+        } catch (IllegalArgumentException err) {
+            System.err.println("--> CONTATO JÁ FAVORITADO!");
+        } catch (ArrayIndexOutOfBoundsException err) {
+            System.err.println("--> POSIÇÃO INVÁLIDA!");
+        }
     }
 
     private static void removeFavorito(Agenda agenda, Scanner scanner) {
         System.out.print("\nPosição> ");
         int posicao = scanner.nextInt();
-        agenda.removeFavorito(posicao);
+        try {
+            agenda.removeFavorito(posicao);
+        } catch (IllegalArgumentException err) {
+            System.err.println("--> CONTATO JÁ NÃO É FAVORITO!");
+        } catch (ArrayIndexOutOfBoundsException err) {
+            System.err.println("--> POSIÇÃO INVÁLIDA!");
+        }
     }
     /**
      * Sai da aplicação.
