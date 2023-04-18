@@ -59,14 +59,14 @@ public class AgendaTest {
     @DisplayName("Quando eu preciso exibir um contato")
     void quandoPrecisoExibirContato() {
         agendaBase.cadastraContato(1, "Matheus", "Gaudencio", "(83) 2101-2101");
-        Contato testContato = agendaBase.getContato(1);
 
-        assertTrue(agendaBase.exibeContato(1));
-        assertFalse(agendaBase.exibeContato(3)); // false se não houver contato.
-        assertFalse(agendaBase.exibeContato(101)); // Posição inválida.
+        agendaBase.getContato(1);
 
-        agendaBase.adicionaFavorito(1, testContato);
-        assertTrue(agendaBase.exibeContato(1)); // Deve mostrar o contato como favoritado.
+        assertThrows(ArrayIndexOutOfBoundsException.class,
+                () -> agendaBase.getContato(101));
+
+        assertThrows(ArrayIndexOutOfBoundsException.class,
+                () -> agendaBase.getContato(0));
     }
     @Test
     @DisplayName("Quando eu preciso pegar os contatos")

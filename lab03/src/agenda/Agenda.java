@@ -58,12 +58,13 @@ public class Agenda {
      * @param telefone Telefone do contato.
      */
     public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
-        Contato contato = new Contato(nome.trim(), sobrenome.trim(), telefone.trim());
-
         // Verifica se todos os campos foram preenchidos.
         if (nome.equals("") || telefone.equals("")) {
             throw new IllegalArgumentException();
         }
+
+        Contato contato = new Contato(nome.trim(), sobrenome.trim(), telefone.trim());
+
         if (!existeContato(contato)) {
             this.contatos[posicao - 1] = contato;
         } else {
@@ -99,7 +100,12 @@ public class Agenda {
             throw new IllegalArgumentException();
         }
     }
-    
+
+    /**
+     * Verifica se o contato já existe na agenda.
+     * @param contato que será verificado.
+     * @return true caso o contato já esteja cadastrado e false caso contrário.
+     */
     private boolean existeContato(Contato contato) {
         for (Contato pessoa : contatos) {
             if (pessoa == null) { continue; }
