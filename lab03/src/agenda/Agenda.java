@@ -36,12 +36,6 @@ public class Agenda {
     }
 
     /**
-     * Acessa o vetor que armazena os favoritos.
-     * @return Array com contatos favoritados.
-     */
-    public Contato[] getFavoritos() { return this.favoritos; }
-
-    /**
      * Acessa os dados de um contato específico.
      * @param posicao Posição do contato na agenda.
      * @return Dados do contato. Null se não há contato na posição.
@@ -51,6 +45,13 @@ public class Agenda {
     }
 
     /**
+     * Acessa o vetor que armazena os favoritos.
+     * @return Array com contatos favoritados.
+     */
+    public Contato[] getFavoritos() { return this.favoritos; }
+
+    public Contato getFavorito(int posicao) { return this.favoritos[posicao - 1]; }
+    /**
      * Cadastra um contato em uma posição. Um cadastro em uma posição que já existe sobrescreve o anterior.
      * @param posicao Posição do contato.
      * @param nome Nome do contato.
@@ -58,6 +59,10 @@ public class Agenda {
      * @param telefone Telefone do contato.
      */
     public void cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
+        // Verifica se algum campo é nulo.
+        if (nome == null || sobrenome == null || telefone == null) {
+            throw new NullPointerException();
+        }
         // Verifica se todos os campos foram preenchidos.
         if (nome.equals("") || telefone.equals("")) {
             throw new IllegalArgumentException();
@@ -91,13 +96,14 @@ public class Agenda {
      * @param posicao Posição do contato que será removido do vetor de favoritos.
      */
     public void removeFavorito(int posicao) {
-        Contato contato = getContato(posicao);
+        Contato contato = getFavorito(posicao);
 
+        if (contato == null) {
+            throw new IllegalArgumentException();
+        }
         if (contato.isFavorito()) {
             favoritos[posicao - 1] = null;
             contato.setFavorito(false);
-        } else {
-            throw new IllegalArgumentException();
         }
     }
 
