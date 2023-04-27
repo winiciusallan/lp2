@@ -21,7 +21,7 @@ public class MainAgenda {
             /*
              * Essa é a maneira de lidar com possíveis erros por falta do arquivo.
              */
-            carregaAgenda("agenda_inicial.csv", agenda);
+            carregaAgenda("src/agenda/agenda_inicial.csv", agenda);
         } catch (FileNotFoundException e) {
             System.err.println("Arquivo não encontrado: " + e.getMessage());
         } catch (IOException e) {
