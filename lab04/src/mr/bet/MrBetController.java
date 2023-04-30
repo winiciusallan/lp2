@@ -16,6 +16,8 @@ public class MrBetController {
 
     public HashMap<String, Time> getTimes() { return times; }
 
+    public Time getTime(String key) { return times.get(key); }
+
     public boolean incluirTime(String nome, String codigo, String mascote) {
         Time time = new Time(nome, codigo.toUpperCase(), mascote);
 
@@ -27,14 +29,14 @@ public class MrBetController {
         }
     }
 
-    public Time recuperarTime(String codigo) {
-       for (String iCodigo : times.keySet()) {
-           if (iCodigo.equals(codigo.toUpperCase())) { return times.get(codigo); }
-       }
-       if (times.get(codigo) == null) {
+    public Time recuperarTime(String codigo) {;
+        for (String iCodigo : times.keySet()) {
+           if (codigo.toUpperCase().equals(iCodigo)) { return times.get(codigo.toUpperCase()); }
+        }
+        if (times.get(codigo) == null) {
            throw new IllegalArgumentException();
-       }
-       return null;
+        }
+        return null;
     }
 
     private boolean jaExisteTime(Time time) {

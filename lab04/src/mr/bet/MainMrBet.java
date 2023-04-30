@@ -59,7 +59,7 @@ public class MainMrBet {
 
         try {
             Time timeRecuperado = mrBetController.recuperarTime(codigo);
-            System.out.println(timeRecuperado);
+            System.out.println("\n" + timeRecuperado);
         } catch (IllegalArgumentException err) {
             System.err.println("TIME NÃO EXISTE!");
         }
