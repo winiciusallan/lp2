@@ -1,5 +1,6 @@
 package laboratorio4.teste;
 
+import mr.bet.MrBetRepository;
 import org.junit.Test;
 import mr.bet.MrBetController;
 import mr.bet.Time;
@@ -46,5 +47,27 @@ public class MrBetControllerTest {
     public void quandoRecuperoTimeInexistente() {
         assertThrows(IllegalArgumentException.class,
                 () -> mrBetBase.recuperarTime("120_pb"));
+    }
+
+    @Test
+    @DisplayName("Quando preciso adicionar um campeonato com sucesso")
+    public void quandoPrecisoAdicionarCampeonatoSucesso() {
+        assertTrue(mrBetBase.adicionarCampeonato("Brasileirão Série A 2023", 20));
+    }
+
+    @Test
+    @DisplayName("Quando adiciono um campeonato que já existe")
+    public void quandoAdicionoCampeonatoQueJaExiste() {
+        mrBetBase.adicionarCampeonato("Brasileirão Série A 2023", 20);
+        assertThrows(IllegalArgumentException.class,
+                () -> mrBetBase.adicionarCampeonato("Brasileirão Série A 2023", 20));
+    }
+
+    @Test
+    @DisplayName("Quando adiciono um campeonato que já existe sem case sensitive")
+    public void quandoAdicionoCampeonatoSemCaseSensitive() {
+        mrBetBase.adicionarCampeonato("Brasileirão Série A 2023", 30);
+        assertThrows(IllegalArgumentException.class,
+                () -> mrBetBase.adicionarCampeonato("brasiLeirão Série a 2023", 20));
     }
 }

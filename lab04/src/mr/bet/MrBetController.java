@@ -5,24 +5,17 @@ import java.util.HashMap;
 
 public class MrBetController {
 
-    private ArrayList<Campeonato> campeonatos;
-    private HashMap<String, Time> times;
+    private MrBetRepository mrBetRepository;
+
     public MrBetController() {
-        campeonatos = new ArrayList<>();
-        times = new HashMap<>();
+        mrBetRepository = new MrBetRepository();
     }
-
-    public ArrayList<Campeonato> getCampeonatos() { return campeonatos; }
-
-    public HashMap<String, Time> getTimes() { return times; }
-
-    public Time getTime(String key) { return times.get(key); }
 
     public boolean incluirTime(String nome, String codigo, String mascote) {
         Time time = new Time(nome, codigo.toUpperCase(), mascote);
 
-        if (!jaExisteTime(time)) {
-            times.put(codigo, time);
+        if (!jaExisteTime(codigo)) {
+            mrBetRepository.incluirTime(time, codigo.toUpperCase());
             return true;
         } else {
             throw new IllegalArgumentException();
@@ -30,19 +23,61 @@ public class MrBetController {
     }
 
     public Time recuperarTime(String codigo) {;
-        for (String iCodigo : times.keySet()) {
-           if (codigo.toUpperCase().equals(iCodigo)) { return times.get(codigo.toUpperCase()); }
+        for (String iCodigo : mrBetRepository.getTimes().keySet()) {
+           if (codigo.toUpperCase().equals(iCodigo)) { return mrBetRepository.getTime(codigo.toUpperCase()); }
         }
-        if (times.get(codigo) == null) {
+        if (mrBetRepository.getTime(codigo) == null) {
            throw new IllegalArgumentException();
         }
         return null;
     }
 
-    private boolean jaExisteTime(Time time) {
-        for (Time iTime : times.values()) {
-            if (iTime == null) { return false; }
-            if (iTime.equals(time)) { return true; }
+    public boolean adicionarCampeonato(String nome, int participantes) {
+        Campeonato camp = new Campeonato(nome, participantes);
+
+        if (!jaExisteCampeonato(camp)) {
+            mrBetRepository.adicionarCampeonato(camp);
+            return true;
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public boolean incluirTimeEmCampeonato(String codigo, String nomeCampeonato) {
+        if (!jaExisteTime(codigo)) {
+            throw new IllegalArgumentException("TIME NÃO EXISTE");
+        }
+        else if (!jaExisteCampeonato(nomeCampeonato)) {
+            throw new IllegalArgumentException("CAMPEONATO NÃO EXISTE");
+        }
+        else {
+            Time time = mrBetRepository.getTime(codigo);
+            Campeonato camp = mrBetRepository.getCampeonato(nomeCampeonato);
+
+            mrBetRepository.incluirTimeEmCampeonato(time, camp);
+            return true;
+        }
+    }
+    private boolean jaExisteTime(String id) {
+        for (String iCodigo : mrBetRepository.getTimes().keySet()) { // Compara o id com os hashs da estrutura de dado.
+            if (iCodigo.equals(id.toUpperCase())) { return true; }
+        }
+        return false;
+    }
+
+    private boolean jaExisteCampeonato(Campeonato camp) {
+        for (Campeonato iCamp : mrBetRepository.getCampeonatos()) {
+            if (iCamp.equals(camp)) { return true; }
+        }
+
+        return false;
+    }
+
+    private boolean jaExisteCampeonato(String nomeCamp) {
+        for (Campeonato iCamp : mrBetRepository.getCampeonatos()) {
+            if (iCamp.getNome().toUpperCase().equals(nomeCamp.toUpperCase())) {
+                return true;
+            }
         }
         return false;
     }
