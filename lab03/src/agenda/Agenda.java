@@ -51,8 +51,10 @@ public class Agenda {
     public Contato[] getFavoritos() { return this.favoritos; }
 
     public Contato getFavorito(int posicao) { return this.favoritos[posicao - 1]; }
+
     /**
      * Cadastra um contato em uma posição. Um cadastro em uma posição que já existe sobrescreve o anterior.
+     *
      * @param posicao Posição do contato.
      * @param nome Nome do contato.
      * @param sobrenome Sobrenome do contato.

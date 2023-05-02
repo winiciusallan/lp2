@@ -2,17 +2,40 @@ package agenda;
 
 import java.util.Objects;
 
+/**
+ * Representação de um contato, sendo representado pelo seu nome, sobrenome e o seu número de telefone. Também,
+ * há um status pra indicar se o contato é favorito ou não.
+ */
 public class Contato {
 
+    /**
+     * Nome do contato.
+     */
     private String nome;
+
+    /**
+     * Sobrenome do contato.
+     */
     private String sobrenome;
+
+    /**
+     * Número de telefone do contato.
+     */
     private String numero;
+
+    /**
+     * Valor que indica se o contato é favorito ou não.
+     */
     private boolean favorito;
 
+    /**
+     * Cria um novo contato.
+     *
+     * @param nome o nome do contato.
+     * @param sobrenome o sobrenome do contato
+     * @param numero o número do contato
+     */
     public Contato(String nome, String sobrenome, String numero) {
-        if (nome == null|| sobrenome == null || numero == null) {
-            throw new NullPointerException();
-        }
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.numero = numero;
