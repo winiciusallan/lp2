@@ -35,6 +35,7 @@ public class MainMrBet {
             case "R" -> recuperarTime(scanner, mrBetController);
             case "A" -> adicionarCampeonato(scanner, mrBetController);
             case "B" -> incluirTimeEmCampeonatoOuVerificar(scanner, mrBetController);
+            case "E" -> exibirCampeonatosTimeParticipa(scanner, mrBetController);
             case "F" -> sair();
         }
     }
@@ -75,20 +76,54 @@ public class MainMrBet {
 
         try {
             mrBetController.adicionarCampeonato(nome, participantes);
+            System.out.println("\nCAMPEONATO ADICIONADO!");
         } catch (IllegalArgumentException err) {
             System.err.println("\nCAMPEONATO JÁ EXISTE!");
         }
     }
 
     private static void incluirTimeEmCampeonatoOuVerificar(Scanner scanner, MrBetController mrBetController) {
-        System.out.print("\n(I)ncluir time em campeonato ou\n (V)erificar se time está em campeonato? ");
-        String opcao = scanner.nextLine();
-        if (opcao.equals("I")) {
-            System.out.print("\nCódigo: ");
-            String codigo = scanner.nextLine();
-            System.out.print("\nCampeonato: ");
-            String nomeCampeonato = scanner.nextLine();
+        System.out.print("\n(I)ncluir time em campeonato ou\n(V)erificar se time está em campeonato? ");
+        String opcao = scanner.nextLine().toUpperCase();
+        System.out.print("\nCódigo: ");
+        String codigo = scanner.nextLine();
+        System.out.print("\nCampeonato: ");
+        String nomeCampeonato = scanner.nextLine();
+        try {
+            if (opcao.equals("I")) {
+                mrBetController.incluirTimeEmCampeonato(codigo, nomeCampeonato);
+                System.out.println("\nTIME INCLUIDO NO CAMPEONATO");
+            }
+            if (opcao.equals("V")) {
+                if (mrBetController.verificarTimeEmCampeonato(codigo, nomeCampeonato)) {
+                    System.out.println("\nO TIME ESTÁ NO CAMPEONATO");
+                } else {
+                    System.out.println("\nO TIME NÃO ESTÁ NO CAMPEONATO");
+                }
+            }
+        } catch (IndexOutOfBoundsException err) {
+            System.err.println("\nTODOS OS TIMES DESSE CAMPEONATO JÁ FORAM INCLUIDOS!");
+        } catch (IllegalArgumentException err) {
+            System.err.println(err.getMessage());
         }
+//        if (opcao.equals("I")) {
+//            try {
+//                mrBetController.incluirTimeEmCampeonato(codigo, nomeCampeonato);
+//            } catch (IndexOutOfBoundsException err) {
+//                System.err.println("TODOS OS TIMES DESSE CAMPEONATO JÁ FORAM INCLUIDOS!");
+//            } catch (IllegalArgumentException err) {
+//                System.err.println(err.getMessage());
+//            }
+//        }
+//        if (opcao.equals("V")) {
+//            try {
+//                mrBetController.verificarTimeEmCampeonato(codigo, nomeCampeonato);
+//            }
+//        }
+    }
+
+    private static void exibirCamepeonatosTimeParticipa(Scanner scanner, MrBetController mrBetController) {
+        // To be implemented
     }
     private static void sair() {
         System.exit(0);

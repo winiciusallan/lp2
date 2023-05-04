@@ -17,7 +17,7 @@ public class Campeonato {
     public Campeonato(String nome, int qntd) {
         this.nome = nome;
         participantes = new Time[qntd];
-        indexParticipantes = qntd;
+        indexParticipantes = 0;
     }
 
     public String getNome() { return nome; }
@@ -27,12 +27,15 @@ public class Campeonato {
     public Time getTime(int pos) { return participantes[pos - 1]; }
 
     public void adicionaTime(Time time) {
-        if (participantes.length == indexParticipantes) { throw new IndexOutOfBoundsException(); }
+        if (indexParticipantes == participantes.length) {
+            throw new IndexOutOfBoundsException();
+        }
         for (int i = 0; i < participantes.length; i++) {
             if (participantes[i] == null) {
                 participantes[i] = time;
             }
         }
+        indexParticipantes++;
     }
     @Override
     public boolean equals(Object o) {

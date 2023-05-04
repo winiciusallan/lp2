@@ -70,4 +70,80 @@ public class MrBetControllerTest {
         assertThrows(IllegalArgumentException.class,
                 () -> mrBetBase.adicionarCampeonato("brasiLeirão Série a 2023", 20));
     }
+
+    @Test
+    @DisplayName("Quando preciso incluir um time em um campeonato com sucesso")
+    public void quandoPrecisoIncluirTimeEmCampeonatoSucesso() {
+        mrBetBase.adicionarCampeonato("Paraibano 2023", 2);
+        mrBetBase.incluirTimeEmCampeonato("110_pb", "Paraibano 2023");
+    }
+
+    @Test
+    @DisplayName("Quando preciso incluir um time em um campeonato com sucesso em minusculo")
+    public void quandoPrecisoIncluirTimeEmCampeonatoSucessoMinusculo() {
+        mrBetBase.adicionarCampeonato("Paraibano 2023", 2);
+        mrBetBase.incluirTimeEmCampeonato("110_pb", "paraIbanO 2023");
+    }
+
+    @Test
+    @DisplayName("Quando preciso incluir um time que não existe em um campeonato")
+    public void quandoPrecisoIncluirTimeQueNaoExiste() {
+        mrBetBase.adicionarCampeonato("Paraibano 2023", 5);
+        assertThrows(IllegalArgumentException.class,
+                () -> mrBetBase.incluirTimeEmCampeonato("250_pb", "paraibano 2023"));
+    }
+
+    @Test
+    @DisplayName("Quando preciso incluir um time em um campeonato que não existe")
+    public void incluirTimeCampeonatoNaoExiste() {
+        mrBetBase.adicionarCampeonato("Brasileirao 2022", 10);
+        assertThrows(IllegalArgumentException.class,
+                () -> mrBetBase.incluirTimeEmCampeonato("110_pb", "Brasileirao 2023"));
+    }
+
+    @Test
+    @DisplayName("Quando preciso incluir time em campeonato que já ultrapassou participantes")
+    public void incluirTimeEmCampeonatoQueParticipantesEstaCheio() {
+        mrBetBase.adicionarCampeonato("Brasileirao 2023", 2);
+        mrBetBase.incluirTime("Treze", "120_pb", "Galo");
+        mrBetBase.incluirTime("Nacional de Patos", "130_pb", "Canario");
+
+        mrBetBase.incluirTimeEmCampeonato("120_pb", "brasileirao 2023");
+        mrBetBase.incluirTimeEmCampeonato("130_pb", "brasileirao 2023");
+        assertThrows(IndexOutOfBoundsException.class,
+                () -> mrBetBase.incluirTimeEmCampeonato("130_pb", "brasileirao 2023"));
+    }
+
+    @Test
+    @DisplayName("Quando preciso verificar se um time está em um campeonato com sucesso")
+    public void verificarSeTimeEstaEmCampeonatoComSucesso() {
+        mrBetBase.adicionarCampeonato("Brasileirao 2023", 2);
+        mrBetBase.incluirTimeEmCampeonato("110_pb", "brasileirao 2023");
+
+        assertTrue(mrBetBase.verificarTimeEmCampeonato("110_pb", "brasileirao 2023"));
+    }
+
+    @Test
+    @DisplayName("Quando preciso verificar se um time não está em um campeonato com sucesso")
+    public void verificarSeTimeNaoEstaEmCampeonatoComSucesso() {
+        mrBetBase.adicionarCampeonato("Brasileirao 2023", 2);
+
+        assertFalse(mrBetBase.verificarTimeEmCampeonato("110_pb", "brasileirao 2023"));
+    }
+
+    @Test
+    @DisplayName("Quando preciso verificar se um time está em um campeonato que não existe")
+    public void verificarSeTimeEstaEmCampeonatoQueNaoExiste() {
+        assertThrows(IllegalArgumentException.class,
+                () -> mrBetBase.verificarTimeEmCampeonato("110_pb", "paraibano 2025"));
+    }
+
+    @Test
+    @DisplayName("Quando preciso verificar se um time que não existe está em um campeonato")
+    public void verificarSeUmTimeQueNaoExisteEstaEmCampeonato() {
+        mrBetBase.adicionarCampeonato("Brasileirao 2024", 5);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> mrBetBase.verificarTimeEmCampeonato("120_pb", "brasileirao 2024"));
+    }
 }

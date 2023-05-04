@@ -58,19 +58,36 @@ public class MrBetController {
             return true;
         }
     }
-    private boolean jaExisteTime(String id) {
-        for (String iCodigo : mrBetRepository.getTimes().keySet()) { // Compara o id com os hashs da estrutura de dado.
-            if (iCodigo.equals(id.toUpperCase())) { return true; }
+
+    public boolean verificarTimeEmCampeonato(String codigo, String nomeDoCampeonato) {
+        if (!jaExisteTime(codigo)) {
+            throw new IllegalArgumentException("TIME NÃO EXISTE");
+        }
+        else if (!jaExisteCampeonato(nomeDoCampeonato)) {
+            throw new IllegalArgumentException("CAMPEONATO NÃO EXISTE");
+        }
+        Time time = mrBetRepository.getTime(codigo);
+        Campeonato camp = mrBetRepository.getCampeonato(nomeDoCampeonato);
+
+        for (Time iTime : camp.getTimes()) {
+            if (iTime == null) { return false; }
+            if (iTime.equals(time)) { return true; }
         }
         return false;
     }
+    private boolean jaExisteTime(String id) {
+//        for (String iCodigo : mrBetRepository.getTimes().keySet()) { // Compara o id com os hashs da estrutura de dado.
+//            if (iCodigo.equals(id.toUpperCase())) { return true; }
+//        }
+        return mrBetRepository.getTimes().containsKey(id.toUpperCase());
+    }
 
     private boolean jaExisteCampeonato(Campeonato camp) {
-        for (Campeonato iCamp : mrBetRepository.getCampeonatos()) {
-            if (iCamp.equals(camp)) { return true; }
-        }
+//        for (Campeonato iCamp : mrBetRepository.getCampeonatos()) {
+//            if (iCamp.equals(camp)) { return true; }
+//        }
 
-        return false;
+        return mrBetRepository.getCampeonatos().contains(camp);
     }
 
     private boolean jaExisteCampeonato(String nomeCamp) {

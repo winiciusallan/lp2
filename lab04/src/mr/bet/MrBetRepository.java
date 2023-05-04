@@ -25,7 +25,7 @@ public class MrBetRepository {
 
     public Campeonato getCampeonato(String nome) {
         for (Campeonato iCamp : campeonatos) {
-            if (iCamp.getNome().equals(nome)) { return iCamp; }
+            if (iCamp.getNome().toUpperCase().equals(nome.toUpperCase())) { return iCamp; }
         }
         return null;
     }
@@ -42,8 +42,7 @@ public class MrBetRepository {
         campeonatos.add(camp);
     }
 
-    public boolean incluirTimeEmCampeonato(Time time, Campeonato campeonato) {
+    public void incluirTimeEmCampeonato(Time time, Campeonato campeonato) {
         campeonato.adicionaTime(time);
-        return false;
     }
 }
