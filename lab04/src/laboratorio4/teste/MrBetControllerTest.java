@@ -107,11 +107,12 @@ public class MrBetControllerTest {
         mrBetBase.adicionarCampeonato("Brasileirao 2023", 2);
         mrBetBase.incluirTime("Treze", "120_pb", "Galo");
         mrBetBase.incluirTime("Nacional de Patos", "130_pb", "Canario");
+        mrBetBase.incluirTime("Sport", "140_pe", "Canario");
 
         mrBetBase.incluirTimeEmCampeonato("120_pb", "brasileirao 2023");
         mrBetBase.incluirTimeEmCampeonato("130_pb", "brasileirao 2023");
         assertThrows(IndexOutOfBoundsException.class,
-                () -> mrBetBase.incluirTimeEmCampeonato("130_pb", "brasileirao 2023"));
+                () -> mrBetBase.incluirTimeEmCampeonato("140_pe", "brasileirao 2023"));
     }
 
     @Test
@@ -145,5 +146,32 @@ public class MrBetControllerTest {
 
         assertThrows(IllegalArgumentException.class,
                 () -> mrBetBase.verificarTimeEmCampeonato("120_pb", "brasileirao 2024"));
+    }
+
+    @Test
+    @DisplayName("Quando preciso exibir com sucesso os campeonatos que um time participa")
+    public void exibirOsCampeonatosDeUmTimeComSucesso() {
+        mrBetBase.adicionarCampeonato("Brasileirao 2023", 10);
+        mrBetBase.incluirTimeEmCampeonato("110_PB", "brasileirao 2023");
+
+        System.out.println(mrBetBase.exibirCampeonatosTimeParticipa("110_pb"));
+    }
+
+    @Test
+    @DisplayName("Se a saída do nome do campeonato é exatamente o cadastrado")
+    public void verificarSeONomeDoCampeonatoEhOMesmo() {
+        mrBetBase.adicionarCampeonato("BrAsilEirÃo 2023", 10);
+        mrBetBase.incluirTimeEmCampeonato("110_pb", "brasileirão 2023");
+
+        System.out.println(mrBetBase.exibirCampeonatosTimeParticipa("110_pb"));
+    }
+    @Test
+    @DisplayName("Quando preciso exibir um time que não está cadastrado")
+    public void exibirTimeQueNaoEstaCadastrado() {
+        mrBetBase.adicionarCampeonato("Brasileirao 2023", 10);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> mrBetBase.incluirTimeEmCampeonato("120_PB", "brasileirao 2023"));
+
     }
 }

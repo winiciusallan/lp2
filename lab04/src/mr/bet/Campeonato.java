@@ -12,12 +12,9 @@ public class Campeonato {
     private String nome;
     private Time[] participantes;
 
-    private int indexParticipantes;
-
     public Campeonato(String nome, int qntd) {
         this.nome = nome;
         participantes = new Time[qntd];
-        indexParticipantes = 0;
     }
 
     public String getNome() { return nome; }
@@ -26,17 +23,23 @@ public class Campeonato {
 
     public Time getTime(int pos) { return participantes[pos - 1]; }
 
-    public void adicionaTime(Time time) {
-        if (indexParticipantes == participantes.length) {
-            throw new IndexOutOfBoundsException();
+    public boolean containsTime(Time time) {
+        for (Time iTime : getTimes()) {
+            if (iTime == null) { return false; }
+            if (iTime.equals(time)) { return true; }
         }
-        for (int i = 0; i < participantes.length; i++) {
-            if (participantes[i] == null) {
-                participantes[i] = time;
-            }
-        }
-        indexParticipantes++;
+        return false;
     }
+
+    public int contaTime() {
+        int count = 0;
+        for (int i = 0; i < participantes.length; i++) {
+            if (participantes[i] != null) { count++; }
+            else { return count; }
+        }
+        return count;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

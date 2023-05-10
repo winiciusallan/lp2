@@ -43,6 +43,12 @@ public class MrBetRepository {
     }
 
     public void incluirTimeEmCampeonato(Time time, Campeonato campeonato) {
-        campeonato.adicionaTime(time);
+        for (int i = 0; i < campeonato.getTimes().length; i++) {
+            if (campeonato.getTimes()[i] == null) {
+                campeonato.getTimes()[i] = time;
+                return;
+            }
+        }
+        throw new IndexOutOfBoundsException("TODOS OS TIMES DESSE CAMPEONATO JÁ FORAM INCLUIDOS!");
     }
 }

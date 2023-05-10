@@ -16,15 +16,17 @@ public class MainMrBet {
 
     private static void menu() {
         System.out.print(
-                "------ Sistema Mr.Bet ------\n" +
-                "(M)inha inclusão de times\n" +
-                "(R)ecuperar Time\n" +
-                "(A)dicionar campeonato\n" +
-                "(B)ora incluir time em campeonato e verificar se time está no campeonato\n" +
-                "(E)xibir campeonatos que o time participa\n" +
-                "(T)entar a sorte e status\n" +
-                "(F)echar programa\n" +
-                "\nOpção > "
+            """
+                    ------ Sistema Mr.Bet ------
+                    (M)inha inclusão de times
+                    (R)ecuperar Time
+                    (A)dicionar campeonato
+                    (B)ora incluir time em campeonato e verificar se time está no campeonato
+                    (E)xibir campeonatos que o time participa
+                    (T)entar a sorte e status
+                    (F)echar programa
+
+                    Opção >\s"""
         );
     }
 
@@ -35,7 +37,7 @@ public class MainMrBet {
             case "R" -> recuperarTime(scanner, mrBetController);
             case "A" -> adicionarCampeonato(scanner, mrBetController);
             case "B" -> incluirTimeEmCampeonatoOuVerificar(scanner, mrBetController);
-            case "E" -> exibirCampeonatosTimeParticipa(scanner, mrBetController);
+            case "E" -> exibirCamepeonatosTimeParticipa(scanner, mrBetController);
             case "F" -> sair();
         }
     }
@@ -73,7 +75,7 @@ public class MainMrBet {
         String nome = scanner.nextLine();
         System.out.print("\nParticipantes: ");
         int participantes = scanner.nextInt();
-
+        scanner.nextLine();
         try {
             mrBetController.adicionarCampeonato(nome, participantes);
             System.out.println("\nCAMPEONATO ADICIONADO!");
@@ -123,9 +125,18 @@ public class MainMrBet {
     }
 
     private static void exibirCamepeonatosTimeParticipa(Scanner scanner, MrBetController mrBetController) {
-        // To be implemented
+        System.out.print("\nTime: ");
+        String codigo = scanner.nextLine();
+        try {
+            System.out.println(
+                    mrBetController.exibirCampeonatosTimeParticipa(codigo)
+            );
+        } catch (IllegalArgumentException err) {
+            System.err.println(err.getMessage());
+        }
     }
     private static void sair() {
+        System.out.println("Por hoje é só pessoal!");
         System.exit(0);
     }
 }

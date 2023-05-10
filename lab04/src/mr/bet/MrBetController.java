@@ -75,6 +75,24 @@ public class MrBetController {
         }
         return false;
     }
+
+    public String exibirCampeonatosTimeParticipa(String codigo) {
+        if (!jaExisteTime(codigo)) {
+            throw new IllegalArgumentException("TIME NÃO EXISTE");
+        }
+        Time time = mrBetRepository.getTime(codigo);
+        String output = "Campeonatos do " + time.getNome() + ":";
+
+        for (Campeonato camp : mrBetRepository.getCampeonatos()) {
+            if (camp.containsTime(time)) {
+                output += "\n* " + camp.getNome() + " - " +
+                        String.format("%d/%d", camp.contaTime(), camp.getTimes().length) ;
+            }
+        }
+
+        return output;
+    }
+
     private boolean jaExisteTime(String id) {
 //        for (String iCodigo : mrBetRepository.getTimes().keySet()) { // Compara o id com os hashs da estrutura de dado.
 //            if (iCodigo.equals(id.toUpperCase())) { return true; }
