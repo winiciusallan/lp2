@@ -38,6 +38,7 @@ public class MainMrBet {
             case "A" -> adicionarCampeonato(scanner, mrBetController);
             case "B" -> incluirTimeEmCampeonatoOuVerificar(scanner, mrBetController);
             case "E" -> exibirCamepeonatosTimeParticipa(scanner, mrBetController);
+            case "T" -> tentarSorteEStatus(scanner, mrBetController);
             case "F" -> sair();
         }
     }
@@ -131,6 +132,30 @@ public class MainMrBet {
             System.out.println(
                     mrBetController.exibirCampeonatosTimeParticipa(codigo)
             );
+        } catch (IllegalArgumentException err) {
+            System.err.println(err.getMessage());
+        }
+    }
+
+    private static void tentarSorteEStatus(Scanner scanner, MrBetController mrBetController) {
+        System.out.print("\n(A)postar ou (S)tatus das Apostas? ");
+        String opcao = scanner.nextLine().toUpperCase();
+        try {
+            if (opcao.equals("A")) {
+                System.out.print("\nCódigo: ");
+                String codigo = scanner.nextLine();
+                System.out.print("Campeonato: ");
+                String camp = scanner.nextLine();
+                System.out.print("Colocação: ");
+                int colocacao = scanner.nextInt();
+                System.out.print("Valor da Aposta: R$");
+                double valor = scanner.nextDouble();
+                mrBetController.apostar(codigo, camp, colocacao, valor);
+                System.out.println("APOSTA REGISTRADA!");
+            }
+            if (opcao.equals("S")) {
+                System.out.println(mrBetController.statusApostas());
+            }
         } catch (IllegalArgumentException err) {
             System.err.println(err.getMessage());
         }

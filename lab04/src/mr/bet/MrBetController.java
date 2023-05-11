@@ -93,6 +93,33 @@ public class MrBetController {
         return output;
     }
 
+    public boolean apostar(String codigo, String campeonato, int colocacao, double valorDaAposta) {
+        // Implementar casos de erro
+        Campeonato camp = mrBetRepository.getCampeonato(campeonato);
+        if (colocacao > camp.getTimes().length) {
+            throw new IllegalArgumentException("APOSTA NÃO REGISTRADA");
+        }
+        if (!jaExisteTime(codigo)) {
+            throw new IllegalArgumentException("TIME NÃO EXISTE");
+        }
+        if (!jaExisteCampeonato(campeonato)) {
+            throw new IllegalArgumentException("CAMPEONATO NÃO EXISTE");
+        }
+
+        Aposta aposta = new Aposta(mrBetRepository.getTime(codigo), camp, colocacao, valorDaAposta);
+        mrBetRepository.adicionaAposta(aposta);
+        return true;
+    }
+
+    public String statusApostas() {
+        String output = "";
+        int i = 0;
+        for (Aposta aposta : mrBetRepository.getApostas()) {
+            output += "\n" + (i + 1) + aposta + "\n";
+            i++;
+        }
+        return output;
+    }
     private boolean jaExisteTime(String id) {
 //        for (String iCodigo : mrBetRepository.getTimes().keySet()) { // Compara o id com os hashs da estrutura de dado.
 //            if (iCodigo.equals(id.toUpperCase())) { return true; }

@@ -75,14 +75,14 @@ public class MrBetControllerTest {
     @DisplayName("Quando preciso incluir um time em um campeonato com sucesso")
     public void quandoPrecisoIncluirTimeEmCampeonatoSucesso() {
         mrBetBase.adicionarCampeonato("Paraibano 2023", 2);
-        mrBetBase.incluirTimeEmCampeonato("110_pb", "Paraibano 2023");
+        assertTrue(mrBetBase.incluirTimeEmCampeonato("110_pb", "Paraibano 2023"));
     }
 
     @Test
     @DisplayName("Quando preciso incluir um time em um campeonato com sucesso em minusculo")
     public void quandoPrecisoIncluirTimeEmCampeonatoSucessoMinusculo() {
         mrBetBase.adicionarCampeonato("Paraibano 2023", 2);
-        mrBetBase.incluirTimeEmCampeonato("110_pb", "paraIbanO 2023");
+        assertTrue(mrBetBase.incluirTimeEmCampeonato("110_pb", "paraIbanO 2023"));
     }
 
     @Test
@@ -173,5 +173,29 @@ public class MrBetControllerTest {
         assertThrows(IllegalArgumentException.class,
                 () -> mrBetBase.incluirTimeEmCampeonato("120_PB", "brasileirao 2023"));
 
+    }
+
+    @Test
+    @DisplayName("Quando preciso criar uma aposta com sucesso")
+    public void criarUmaAposta() {
+        fail(); // To be implemented
+    }
+
+    @Test
+    @DisplayName("Quando crio uma aposta mas colocação excede participantes")
+    public void criarApostaColocacaoExcedeParticipantes() {
+        fail(); // To be implemented
+    }
+
+    @Test
+    @DisplayName("Quando crio uma aposta mas time não esta cadastrado")
+    public void criarApostaTimeNaoExiste() {
+        fail(); // To be implemented
+    }
+
+    @Test
+    @DisplayName("Quando crio aposta mas campeonato não existe")
+    public void criarApostaCampeonatoNaoExiste() {
+        fail(); // To be implemented
     }
 }

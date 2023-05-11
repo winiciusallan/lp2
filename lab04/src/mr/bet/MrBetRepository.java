@@ -14,9 +14,12 @@ public class MrBetRepository {
     private ArrayList<Campeonato> campeonatos;
     private HashMap<String, Time> times;
 
+    private ArrayList<Aposta> apostas;
+
     public MrBetRepository() {
         campeonatos = new ArrayList<>();
         times = new HashMap<>();
+        apostas = new ArrayList<>();
     }
 
     public ArrayList<Campeonato> getCampeonatos() { return campeonatos; }
@@ -34,6 +37,8 @@ public class MrBetRepository {
 
     public Time getTime(String key) { return times.get(key.toUpperCase()); }
 
+    public ArrayList<Aposta> getApostas() { return apostas; }
+
     public void incluirTime(Time time, String id) {
         times.put(id, time);
     }
@@ -50,5 +55,9 @@ public class MrBetRepository {
             }
         }
         throw new IndexOutOfBoundsException("TODOS OS TIMES DESSE CAMPEONATO JÁ FORAM INCLUIDOS!");
+    }
+
+    public void adicionaAposta(Aposta aposta) {
+        apostas.add(aposta);
     }
 }
