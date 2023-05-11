@@ -1,5 +1,6 @@
 package laboratorio4.teste;
 
+import mr.bet.Campeonato;
 import mr.bet.MrBetRepository;
 import org.junit.Test;
 import mr.bet.MrBetController;
@@ -19,6 +20,7 @@ public class MrBetControllerTest {
     public void setUp() {
         mrBetBase = new MrBetController();
         mrBetBase.incluirTime("Campinense", "110_PB", "Raposa");
+        mrBetBase.adicionarCampeonato("Campeonato teste", 20);
     }
 
     @Test
@@ -172,30 +174,43 @@ public class MrBetControllerTest {
 
         assertThrows(IllegalArgumentException.class,
                 () -> mrBetBase.incluirTimeEmCampeonato("120_PB", "brasileirao 2023"));
-
     }
 
     @Test
     @DisplayName("Quando preciso criar uma aposta com sucesso")
-    public void criarUmaAposta() {
-        fail(); // To be implemented
+    public void criarUmaApostaComSucesso() {
+        mrBetBase.incluirTimeEmCampeonato("110_pb", "campeonato teste");
+
+        assertTrue(mrBetBase.apostar
+                ("110_pb", "campeonato teste", 3, 50));
     }
 
     @Test
     @DisplayName("Quando crio uma aposta mas colocação excede participantes")
     public void criarApostaColocacaoExcedeParticipantes() {
-        fail(); // To be implemented
+        mrBetBase.incluirTimeEmCampeonato("110_pb", "campeonato teste");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> mrBetBase.apostar("110_pb", "campeonato teste", 22, 50));
     }
 
     @Test
     @DisplayName("Quando crio uma aposta mas time não esta cadastrado")
     public void criarApostaTimeNaoExiste() {
-        fail(); // To be implemented
+        mrBetBase.incluirTimeEmCampeonato("110_pb", "campeonato teste");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> mrBetBase.apostar("120_pb", "campeonato teste", 3, 50));
     }
 
     @Test
     @DisplayName("Quando crio aposta mas campeonato não existe")
     public void criarApostaCampeonatoNaoExiste() {
-        fail(); // To be implemented
+        mrBetBase.incluirTimeEmCampeonato("110_pb", "campeonato teste");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> mrBetBase.apostar("110_pb", "campeonato teste 2", 3, 50));
     }
+
+
 }

@@ -17,7 +17,7 @@ public class MainMrBet {
     private static void menu() {
         System.out.print(
             """
-                    ------ Sistema Mr.Bet ------
+                    \n------ Sistema Mr.Bet ------
                     (M)inha inclusão de times
                     (R)ecuperar Time
                     (A)dicionar campeonato
@@ -53,9 +53,9 @@ public class MainMrBet {
 
         try {
             mrBetController.incluirTime(nome, codigo, mascote);
-            System.out.println("\nINCLUSÃO REALIZADA\n");
+            System.out.println("INCLUSÃO REALIZADA!");
         } catch (IllegalArgumentException err) {
-            System.err.println("\nTIME JÁ EXISTE!\n");
+            System.err.println("TIME JÁ EXISTE!");
         }
     }
 
@@ -74,14 +74,14 @@ public class MainMrBet {
     private static void adicionarCampeonato(Scanner scanner, MrBetController mrBetController) {
         System.out.print("\nCampeonato: ");
         String nome = scanner.nextLine();
-        System.out.print("\nParticipantes: ");
+        System.out.print("Participantes: ");
         int participantes = scanner.nextInt();
         scanner.nextLine();
         try {
             mrBetController.adicionarCampeonato(nome, participantes);
-            System.out.println("\nCAMPEONATO ADICIONADO!");
+            System.out.println("CAMPEONATO ADICIONADO!");
         } catch (IllegalArgumentException err) {
-            System.err.println("\nCAMPEONATO JÁ EXISTE!");
+            System.err.println("CAMPEONATO JÁ EXISTE!");
         }
     }
 
@@ -90,18 +90,18 @@ public class MainMrBet {
         String opcao = scanner.nextLine().toUpperCase();
         System.out.print("\nCódigo: ");
         String codigo = scanner.nextLine();
-        System.out.print("\nCampeonato: ");
+        System.out.print("Campeonato: ");
         String nomeCampeonato = scanner.nextLine();
         try {
             if (opcao.equals("I")) {
                 mrBetController.incluirTimeEmCampeonato(codigo, nomeCampeonato);
-                System.out.println("\nTIME INCLUIDO NO CAMPEONATO");
+                System.out.println("TIME INCLUIDO NO CAMPEONATO");
             }
             if (opcao.equals("V")) {
                 if (mrBetController.verificarTimeEmCampeonato(codigo, nomeCampeonato)) {
-                    System.out.println("\nO TIME ESTÁ NO CAMPEONATO");
+                    System.out.println("O TIME ESTÁ NO CAMPEONATO");
                 } else {
-                    System.out.println("\nO TIME NÃO ESTÁ NO CAMPEONATO");
+                    System.out.println("O TIME NÃO ESTÁ NO CAMPEONATO");
                 }
             }
         } catch (IndexOutOfBoundsException err) {
@@ -150,6 +150,7 @@ public class MainMrBet {
                 int colocacao = scanner.nextInt();
                 System.out.print("Valor da Aposta: R$");
                 double valor = scanner.nextDouble();
+                scanner.nextLine();
                 mrBetController.apostar(codigo, camp, colocacao, valor);
                 System.out.println("APOSTA REGISTRADA!");
             }

@@ -36,10 +36,10 @@ public class Aposta {
 
     @Override
     public String toString() {
-        return getTime().getCodigo() + " "
-                + getTime().getNome() + " / " + getTime().getMascote()
+        return "[" + getTime().getCodigo() + "]"+ " "
+                + getTime().getNome() + " / " + getTime().getMascote() + "\n"
                 + getCampeonato().getNome() + "\n"
-                + getCampeonato().contaTime() + "/" + getCampeonato().getTimes().length + "\n"
+                + getColocacao() + "/" + getCampeonato().getTimes().length + "\n"
                 + "R$ " + getValorDaAposta();
     }
 }
