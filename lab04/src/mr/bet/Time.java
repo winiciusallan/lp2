@@ -8,10 +8,27 @@ import java.util.Objects;
  */
 public class Time {
 
+    /**
+     * Nome do time.
+     */
     private String nome;
+
+    /**
+     * Código identificador do time.
+     */
     private String codigo;
+
+    /**
+     * Nome do mascote do time.
+     */
     private String mascote;
 
+    /**
+     * Faz a criação de um time.
+     * @param nome O nome do time.
+     * @param codigo O código do time.
+     * @param mascote O nome do mascote do time.
+     */
     public Time(String nome, String codigo, String mascote) {
         this.nome = nome;
         this.codigo = codigo;

@@ -3,6 +3,12 @@ package mr.bet;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * Classe main com o menu para utilização do sistema Mr. Bet. O usuário pode acessar por meio do console e fazer uso
+ * das funcionalidades dispostas pelo sistema. Incluir time, recuperar time, adicionar campeonato, fazer verificações
+ * e criar apostas são alguma das funcionalidades disponíveis.
+ * @Author Winicius Allan - 122110397
+ */
 public class MainMrBet {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -109,20 +115,6 @@ public class MainMrBet {
         } catch (IllegalArgumentException err) {
             System.err.println(err.getMessage());
         }
-//        if (opcao.equals("I")) {
-//            try {
-//                mrBetController.incluirTimeEmCampeonato(codigo, nomeCampeonato);
-//            } catch (IndexOutOfBoundsException err) {
-//                System.err.println("TODOS OS TIMES DESSE CAMPEONATO JÁ FORAM INCLUIDOS!");
-//            } catch (IllegalArgumentException err) {
-//                System.err.println(err.getMessage());
-//            }
-//        }
-//        if (opcao.equals("V")) {
-//            try {
-//                mrBetController.verificarTimeEmCampeonato(codigo, nomeCampeonato);
-//            }
-//        }
     }
 
     private static void exibirCamepeonatosTimeParticipa(Scanner scanner, MrBetController mrBetController) {

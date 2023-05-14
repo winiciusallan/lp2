@@ -4,14 +4,26 @@ import java.util.Locale;
 import java.util.Objects;
 
 /**
- * Representação de um campeonato de esportivo.
+ * Representação de um campeonato esportivo.
  * @author Winicius Allan
  */
 public class Campeonato {
 
+    /**
+     * Nome do campeonato.
+     */
     private String nome;
+
+    /**
+     * Um vetor com todos os times que participam desse campeonato.
+     */
     private Time[] participantes;
 
+    /**
+     * Cria um campeonato. A quantidade de participantes é iniciada de acordo com o passado como parâmetro.
+     * @param nome Nome do campeonato.
+     * @param qntd Número total de times do campeonato.
+     */
     public Campeonato(String nome, int qntd) {
         this.nome = nome;
         participantes = new Time[qntd];
@@ -21,8 +33,11 @@ public class Campeonato {
 
     public Time[] getTimes() { return participantes; }
 
-    public Time getTime(int pos) { return participantes[pos - 1]; }
-
+    /**
+     * Verifica se um contém um time.
+     * @param time O time que vai ser analizado.
+     * @return Será retornado um valor indicando se o time está contido ou não.
+     */
     public boolean containsTime(Time time) {
         for (Time iTime : getTimes()) {
             if (iTime == null) { return false; }
@@ -31,6 +46,10 @@ public class Campeonato {
         return false;
     }
 
+    /**
+     * Faz a contagem de times que o vetor tem.
+     * @return A quantidade de times do campeonato.
+     */
     public int contaTime() {
         int count = 0;
         for (int i = 0; i < participantes.length; i++) {
