@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public abstract class Elemento {
 
-    private int prioridade;
-    private String valor;
+    protected int prioridade;
+    protected String valor;
     private HashMap<String, String> propriedades;
 
     public Elemento(String valor, int prioridade) {
@@ -18,4 +18,5 @@ public abstract class Elemento {
     public String getValor() { return valor; }
 
     public HashMap<String, String> getPropriedades() { return propriedades; }
+
 }

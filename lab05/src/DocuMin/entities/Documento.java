@@ -30,7 +30,7 @@ public class Documento {
     public String[] exibeDocumento() {
         String[] output = new String[elementos.size()];
         for (int i = 0; i < output.length; i++) {
-            output[i] = elementos[i].toString();
+            output[i] = elementos[i].toString(); // Implements elemento toString.
         }
 
         return output;
