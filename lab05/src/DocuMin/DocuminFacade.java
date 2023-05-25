@@ -1,6 +1,7 @@
 package DocuMin;
 
 import DocuMin.controllers.DocumentoController;
+import DocuMin.entities.*;
 
 public class DocuminFacade {
 
@@ -16,7 +17,7 @@ public class DocuminFacade {
         return this.documentoController.criarDocumento(titulo);
     }
 
-    public boolean criarDocumento(String titulo, int tamanhoMaximo) {
+    public boolean criarDocumento(String titulo, int tamanhoMaximo) throws IllegalAccessException {
         return this.documentoController.criarDocumento(titulo, tamanhoMaximo);
     }
 
@@ -35,19 +36,19 @@ public class DocuminFacade {
     /* OPERAÇÕES PARA ELEMENTOS */
 
     public int criarTexto(String tituloDoc, String valor, int prioridade) {
-        return 0;
+        return documentoController.criaElemento(tituloDoc, new Texto(valor, prioridade));
     }
 
     public int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
-        return 0;
+        return documentoController.criaElemento(tituloDoc, new Titulo(valor, prioridade, nivel, linkavel));
     }
 
     public int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
-        return 0;
+        return documentoController.criaElemento(tituloDoc, new Lista(valorLista, prioridade, separador, charLista));
     }
 
     public int criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
-        return 0;
+        return documentoController.criaElemento(tituloDoc, new Termo(valorTermos, prioridade, separador, ordem));
     }
 
     public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {

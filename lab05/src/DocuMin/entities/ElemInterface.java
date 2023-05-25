@@ -2,7 +2,7 @@ package DocuMin.entities;
 
 public interface ElemInterface {
 
-    public String represetacaoCompleta();
+    public String representacaoCompleta();
 
     public String representacaoResumida();
 
