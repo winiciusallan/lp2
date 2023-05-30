@@ -20,7 +20,7 @@ public class DocumentoController {
     public boolean criarDocumento(String titulo) throws IllegalAccessException {
         if (estaCadastrado(titulo)) return false;
 
-        if (titulo.length() <= 0 || titulo.trim().equals("")) {
+        if (titulo.trim().equals("")) {
             throw new IllegalAccessException("Título com tamanho inválido");
         }
 
@@ -31,7 +31,7 @@ public class DocumentoController {
     public boolean criarDocumento(String titulo, int tamanhoMaximo) throws IllegalAccessException {
         if (estaCadastrado(titulo)) return false;
 
-        if (titulo.length() <= 0 || titulo.trim().equals("")) {
+        if (titulo.trim().equals("")) {
             throw new IllegalAccessException("Título com tamanho inválido");
         }
 
@@ -73,6 +73,5 @@ public class DocumentoController {
     public String representacaoCompleta(String tituloDoc, int posElemento) {
         return documentos.get(tituloDoc).getElemento(posElemento).representacaoCompleta();
     }
-
 
 }
