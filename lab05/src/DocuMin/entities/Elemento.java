@@ -5,7 +5,7 @@ import java.util.HashMap;
 public abstract class Elemento {
 
     /* COLOCAR METODOS ABSTRATOS */
-    
+
     protected int prioridade;
     protected String valor;
     private HashMap<String, String> propriedades;
