@@ -9,5 +9,29 @@ public class Lista extends Elemento {
         super(valorLista, prioridade);
     }
 
+    public String getSeparador() { return separador; }
 
+    public String getCharLista() { return charLista; }
+
+    @Override
+    public String representacaoCompleta() {
+        String[] valores = getValor().split(getSeparador());
+        String output = "";
+
+        for (String charr : valores) {
+            output += getCharLista() + " " + charr + "\n";
+        }
+        return output;
+    }
+
+    @Override
+    public String representacaoResumida() {
+        String[] valores = getValor().split(getSeparador());
+        String output = "";
+
+        for (String charr : valores) {
+            output += charr + getSeparador() + " ";
+        }
+        return output;
+    }
 }
