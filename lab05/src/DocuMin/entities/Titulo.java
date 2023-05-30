@@ -1,6 +1,6 @@
 package DocuMin.entities;
 
-public class Titulo extends Elemento implements ElemInterface {
+public class Titulo extends Elemento {
 
     private int nivel;
     private boolean linkavel;
@@ -17,11 +17,12 @@ public class Titulo extends Elemento implements ElemInterface {
 
     @Override
     public String representacaoCompleta() {
-        return null;
+        if (linkavel) return getNivel() + "-" + getValor().toUpperCase();
+        return getNivel() + ". " + getValor();
     }
 
     @Override
     public String representacaoResumida() {
-        return null;
+        return getNivel() + ". " + getValor();
     }
 }

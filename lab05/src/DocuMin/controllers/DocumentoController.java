@@ -71,7 +71,7 @@ public class DocumentoController {
     }
 
     public String representacaoCompleta(String tituloDoc, int posElemento) {
-        return documentos.get(tituloDoc).getElemento(posElemento);
+        return documentos.get(tituloDoc).getElemento(posElemento).representacaoCompleta();
     }
 
 

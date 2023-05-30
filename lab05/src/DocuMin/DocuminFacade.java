@@ -13,7 +13,7 @@ public class DocuminFacade {
         this.documentoController = new DocumentoController();
     }
 
-    public boolean criarDocumento(String titulo) {
+    public boolean criarDocumento(String titulo) throws IllegalAccessException {
         return this.documentoController.criarDocumento(titulo);
     }
 

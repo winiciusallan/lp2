@@ -2,7 +2,7 @@ package DocuMin.entities;
 
 import java.util.HashMap;
 
-public abstract class Elemento {
+public abstract class Elemento implements ElemInterface {
 
     /* COLOCAR METODOS ABSTRATOS */
 
