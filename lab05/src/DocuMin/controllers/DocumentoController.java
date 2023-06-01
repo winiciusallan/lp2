@@ -34,14 +34,15 @@ public class DocumentoController {
         if (titulo.trim().equals("")) {
             throw new IllegalAccessException("Título com tamanho inválido");
         }
+        if (tamanhoMaximo <= 0) { throw new IllegalArgumentException(); }
 
         documentos.put(titulo, new Documento(titulo, tamanhoMaximo));
         return true;
     }
 
     public void removerDocumento(String titulo) {
-        if (!estaCadastrado(titulo)) throw new NoSuchElementException();
         if (titulo.trim().equals("")) throw new IllegalArgumentException();
+        if (!estaCadastrado(titulo)) throw new NoSuchElementException();
 
         documentos.remove(titulo);
     }
