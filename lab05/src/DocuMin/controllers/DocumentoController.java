@@ -1,5 +1,6 @@
 package DocuMin.controllers;
 
+import DocuMin.entities.Atalho;
 import DocuMin.entities.Documento;
 import DocuMin.entities.Elemento;
 
@@ -71,8 +72,36 @@ public class DocumentoController {
         return documentos.get(tituloDoc).criaElemento(elem);
     }
 
+    public boolean apagarElemento(String tituloDoc, int posElemento) {
+        return documentos.get(tituloDoc).apagarElemento(posElemento);
+    }
+
+    public void moverParaCima(String tituloDoc, int posElemento) {
+        documentos.get(tituloDoc).moverPosicaoAcima(posElemento);
+    }
+
+    public void moverParaBaixo(String tituloDoc, int posElemento) {
+        documentos.get(tituloDoc).moverPosicaoAbaixo(posElemento);
+    }
+
     public String representacaoCompleta(String tituloDoc, int posElemento) {
         return documentos.get(tituloDoc).getElemento(posElemento).representacaoCompleta();
+    }
+
+    public String representacaoResumida(String tituloDoc, int posElemento) {
+        return documentos.get(tituloDoc).getElemento(posElemento).representacaoResumida();
+    }
+
+    public int criarAtalho(String tituloDoc, String tituloReferenciado) {
+        Documento docRef = documentos.get(tituloReferenciado);
+        Documento docAtalho = documentos.get(tituloDoc);
+
+        if (!(docAtalho.isAtalho() || docAtalho.hasAtalho())) {
+            return documentos.get(tituloDoc)
+                    .criaElemento(new Atalho(tituloReferenciado, docRef.mediaPrioridade(), docRef));
+        } else {
+            throw new IllegalStateException();
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package DocuMin.entities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 public class Documento {
@@ -8,6 +9,8 @@ public class Documento {
     private String titulo;
     private int tamanho;
     private ArrayList<Elemento> elementos;
+    private boolean isAtalho;
+    private boolean hasAtalho;
 
     public Documento(String titulo) {
         this.titulo = titulo;
@@ -23,6 +26,14 @@ public class Documento {
     public String getTitulo() { return titulo; }
 
     public int getTamanho() { return tamanho; }
+
+    public boolean isAtalho() { return isAtalho; }
+
+    public void setIsAtalho(boolean b) { this.isAtalho = b; }
+
+    public boolean hasAtalho() { return hasAtalho; }
+
+    public void setHasAtalho(boolean b) { this.hasAtalho = b; }
 
     public ArrayList<Elemento> getElementos() { return elementos; }
 
@@ -42,30 +53,30 @@ public class Documento {
         return elementos.indexOf(elem);
     }
 
-    public boolean moverPosicaoAcima(Elemento elem) {
-        if (elementos.indexOf(elem) == 0) return false;
-
-        Elemento elemAnterior = elementos.get(elementos.indexOf(elem) - 1);
-        Elemento aux = elementos.get(elementos.indexOf(elem));
-
-        elem = elemAnterior;
-        elemAnterior = aux;
+    public boolean moverPosicaoAcima(int pos) {
+        if (pos == 0) return false;
+        Collections.swap(elementos, pos, pos + 1);
         return true;
     }
 
-    public boolean moverPosicaoAbaixo(Elemento elem) {
-        if (elementos.indexOf(elem) == elementos.size() ) return false;
-
-        Elemento elemSeguinte = elementos.get(elementos.indexOf(elem) + 1);
-        Elemento aux = elementos.get(elementos.indexOf(elem));
-
-        elem = elemSeguinte;
-        elemSeguinte = aux;
+    public boolean moverPosicaoAbaixo(int pos) {
+        if (pos == elementos.size() ) return false;
+        Collections.swap(elementos, pos, pos - 1);
         return true;
     }
 
-    public boolean apagarElemento(Elemento elem) {
-        return elementos.remove(elem);
+    public boolean apagarElemento(int pos) {
+        elementos.remove(pos);
+        return true;
+    }
+
+    public int mediaPrioridade() {
+        int output = 0;
+
+        for (Elemento elem : elementos) {
+            output += elem.getPrioridade();
+        }
+        return output / elementos.size();
     }
 
     @Override

@@ -52,22 +52,27 @@ public class DocuminFacade {
     }
 
     public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
-        return "";
+        return documentoController.representacaoCompleta(tituloDoc, elementoPosicao);
     }
 
     public String pegarRepresentacaoResumida(String tituloDoc, int elementoPosicao) {
-        return "";
+        return documentoController.representacaoResumida(tituloDoc, elementoPosicao);
     }
 
     public boolean apagarElemento(String tituloDoc, int elementoPosicao) {
-        return false;
+        return documentoController.apagarElemento(tituloDoc, elementoPosicao);
     }
 
     public void moverParaCima(String tituloDoc, int elementoPosicao) {
-
+        documentoController.moverParaCima(tituloDoc, elementoPosicao);
     }
 
     public void moverParaBaixo(String tituloDoc, int elementoPosicao) {
-
+        documentoController.moverParaBaixo(tituloDoc, elementoPosicao);
     }
+
+    public int criarAtalho(String tituloDoc, String tituloReferenciado) {
+        return documentoController.criarAtalho(tituloDoc, tituloReferenciado);
+    }
+
 }
