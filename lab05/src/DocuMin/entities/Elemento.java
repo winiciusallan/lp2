@@ -1,5 +1,7 @@
 package DocuMin.entities;
 
+import DocuMin.interfaces.ElemInterface;
+
 import java.util.HashMap;
 
 public abstract class Elemento implements ElemInterface {
@@ -11,6 +13,7 @@ public abstract class Elemento implements ElemInterface {
     private HashMap<String, String> propriedades;
 
     public Elemento(String valor, int prioridade) {
+        this.valor = valor;
         this.prioridade = prioridade;
         this.propriedades = new HashMap<>();
     }

@@ -1,4 +1,4 @@
-package DocuMin.entities;
+package DocuMin.interfaces;
 
 public interface ElemInterface {
 

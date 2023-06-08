@@ -75,4 +75,26 @@ public class DocuminFacade {
         return documentoController.criarAtalho(tituloDoc, tituloReferenciado);
     }
 
+    /* OPERAÇÕES DE VISÃO */
+
+    public int criarVisaoCompleta(String tituloDoc) {
+        return 0;
+    }
+
+    public int criarVisaoResumida(String tituloDoc) {
+        return 0;
+    }
+
+    public int criarVisaoPrioritaria(String tituloDoc, int prioridade) {
+        return 0;
+    }
+
+    public int criarVisaoTitulo(String tituloDoc) {
+        return 0;
+    }
+
+    public String[] exibirVisao(int visaoId) {
+        return null;
+    }
+
 }

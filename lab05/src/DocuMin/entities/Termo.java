@@ -1,8 +1,6 @@
 package DocuMin.entities;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class Termo extends Elemento {
@@ -22,7 +20,22 @@ public class Termo extends Elemento {
 
     @Override
     public String representacaoCompleta() {
-        return null; // To be implemented
+        String[] valores = getValor().split(getSeparador());
+        String output = "Total de termos: " + valores.length + "\n- ";
+
+        switch (this.ordem) {
+            case "TAMANHO" -> Arrays.sort(valores, new OrdenaTamanho());
+            case "ALFABETICA" -> Arrays.sort(valores);
+        };
+
+        for (int i = 0; i < valores.length; i++) {
+            if (i == valores.length - 1) {
+                output += valores[i];
+            } else {
+                output += valores[i] + ", ";
+            }
+        }
+        return output;
     }
 
     @Override
@@ -32,7 +45,7 @@ public class Termo extends Elemento {
 
         switch (this.ordem) {
             case "TAMANHO" -> Arrays.sort(valores, new OrdenaTamanho());
-            case "ALFABÉTICA" -> Arrays.sort(valores);
+            case "ALFABETICA" -> Arrays.sort(valores);
         };
 
         for (int i = 0; i < valores.length; i++) {
@@ -48,7 +61,7 @@ public class Termo extends Elemento {
     public class OrdenaTamanho implements Comparator<String> {
         @Override
         public int compare(String o1, String o2) {
-            return o1.compareTo(o2);
+            return Integer.compare(o2.length(), o1.length());
         }
     }
 }

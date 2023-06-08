@@ -1,6 +1,7 @@
 package DocuMin.testes;
 
 import DocuMin.controllers.DocumentoController;
+import DocuMin.entities.Termo;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,8 +14,9 @@ public class DocumentoControllerTest {
     private DocumentoController docBase;
 
     @Before
-    public void setUp() {
+    public void setUp() throws IllegalAccessException {
         docBase = new DocumentoController();
+        docBase.criarDocumento("Documento base");
     }
 
     @Test
@@ -60,5 +62,19 @@ public class DocumentoControllerTest {
     @Test
     public void contaElementosComSucesso() {
 //        assertTrue(docBase.contarElementos(""));
+    }
+
+    @Test
+    public void termoRepresentacaoCompletaOrdenadoPorTamanho() {
+        docBase.criaElemento("Documento base", new Termo("Teste/termos/Aleatorios", 3, "/", "TAMANHO"));
+
+        System.out.println(docBase.representacaoCompleta("Documento base", 0));
+    }
+
+    @Test
+    public void termoRepresentacaoResumidaOrdenadoPorTamanho() {
+        docBase.criaElemento("Documento base", new Termo("Teste/termos/Aleatorios", 3, "/", "TAMANHO"));
+
+        System.out.println(docBase.representacaoResumida("Documento base", 0));
     }
 }

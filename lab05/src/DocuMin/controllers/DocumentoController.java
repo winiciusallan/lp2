@@ -3,17 +3,20 @@ package DocuMin.controllers;
 import DocuMin.entities.Atalho;
 import DocuMin.entities.Documento;
 import DocuMin.entities.Elemento;
+import DocuMin.entities.Visao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 public class DocumentoController {
 
     private HashMap<String, Documento> documentos;
+    private ArrayList<Visao> visoes;
 
     public DocumentoController() {
         this.documentos = new HashMap<>();
+        this.visoes = new ArrayList<>();
     }
 
     /* OPERAÇÕES PARA ELEMENTO */
