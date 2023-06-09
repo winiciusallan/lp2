@@ -17,7 +17,9 @@ public class Titulo extends Elemento {
 
     @Override
     public String representacaoCompleta() {
-        if (linkavel) return getNivel() + "-" + getValor().toUpperCase();
+        if (linkavel) return getNivel() + ". " + getValor() + " --\n"
+                            + getNivel() + "-" + getValor().replace(" ", "").toUpperCase();
+
         return getNivel() + ". " + getValor();
     }
 

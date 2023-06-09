@@ -42,7 +42,7 @@ public class Documento {
     public String[] exibeDocumento() {
         String[] output = new String[elementos.size()];
         for (int i = 0; i < output.length; i++) {
-            output[i] = elementos.get(i).toString(); // Implements elemento toString.
+            output[i] = elementos.get(i).representacaoResumida();
         }
 
         return output;

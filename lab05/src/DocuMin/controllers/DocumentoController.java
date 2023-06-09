@@ -50,30 +50,30 @@ public class DocumentoController {
 
     /* OPERAÇÕES PARA ELEMENTO */
 
-    public int contarElementos(String titulo) {
-        if (!estaCadastrado(titulo)) throw new NoSuchElementException();
-        if (titulo.trim().equals("")) throw new IllegalArgumentException();
-
-        return documentos.get(titulo).getElementos().size();
-    }
-
-    public String[] exibirDocumento(String titulo) {
-        if (!estaCadastrado(titulo)) throw new NoSuchElementException();
-        if (titulo.trim().equals("")) throw new IllegalArgumentException();
-
-        return documentos.get(titulo).exibeDocumento();
-    }
-
-    private boolean estaCadastrado(String titulo) {
-        return documentos.get(titulo) != null;
-    }
-
     public int criaElemento(String tituloDoc, Elemento elem) {
         return documentos.get(tituloDoc).criaElemento(elem);
     }
 
     public boolean apagarElemento(String tituloDoc, int posElemento) {
         return documentos.get(tituloDoc).apagarElemento(posElemento);
+    }
+
+    public int contarElementos(String titulo) {
+        if (titulo.trim().equals("")) throw new IllegalArgumentException();
+        if (!estaCadastrado(titulo)) throw new NoSuchElementException();
+
+        return documentos.get(titulo).getElementos().size();
+    }
+
+    public String[] exibirDocumento(String titulo) {
+        if (titulo.trim().equals("")) throw new IllegalArgumentException();
+        if (!estaCadastrado(titulo)) throw new NoSuchElementException();
+
+        return documentos.get(titulo).exibeDocumento();
+    }
+
+    private boolean estaCadastrado(String titulo) {
+        return documentos.get(titulo) != null;
     }
 
     public void moverParaCima(String tituloDoc, int posElemento) {
@@ -97,6 +97,9 @@ public class DocumentoController {
         Documento docAtalho = documentos.get(tituloDoc);
 
         if (!(docAtalho.isAtalho() || docAtalho.hasAtalho())) {
+            docRef.setIsAtalho(true);
+            docAtalho.setHasAtalho(true);
+
             return documentos.get(tituloDoc)
                     .criaElemento(new Atalho(tituloReferenciado, docRef.mediaPrioridade(), docRef));
         } else {
