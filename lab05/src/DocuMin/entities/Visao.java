@@ -1,12 +1,14 @@
 package DocuMin.entities;
 
-public abstract class Visao {
+import DocuMin.interfaces.visaoInterface;
 
-    protected Documento doc;
+public abstract class Visao implements visaoInterface {
 
-    public Visao(Documento doc) {
-        this.doc = doc;
+    protected Documento docReferenciado;
+
+    public Visao(Documento docReferenciado) {
+        this.docReferenciado = docReferenciado;
     }
 
-    abstract String[] exibirVisao();
+    //    abstract String[] exibirVisao();
 }

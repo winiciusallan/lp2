@@ -78,23 +78,23 @@ public class DocuminFacade {
     /* OPERAÇÕES DE VISÃO */
 
     public int criarVisaoCompleta(String tituloDoc) {
-        return 0;
+        return documentoController.criarVisaoCompleta(tituloDoc);
     }
 
     public int criarVisaoResumida(String tituloDoc) {
-        return 0;
+        return documentoController.criarVisaoResumida(tituloDoc);
     }
 
     public int criarVisaoPrioritaria(String tituloDoc, int prioridade) {
-        return 0;
+        return documentoController.criarVisaoPrioritaria(tituloDoc, prioridade);
     }
 
     public int criarVisaoTitulo(String tituloDoc) {
-        return 0;
+        return documentoController.criarVisaoTitulo(tituloDoc);
     }
 
     public String[] exibirVisao(int visaoId) {
-        return null;
+        return documentoController.exibirVisao(visaoId);
     }
 
 }

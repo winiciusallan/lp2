@@ -1,8 +1,8 @@
 package DocuMin.entities;
 
-public class VisaoResumida extends Visao {
+public class VisaoTitulo extends Visao {
 
-    public VisaoResumida(Documento docReferenciado) {
+    public VisaoTitulo(Documento docReferenciado) {
         super(docReferenciado);
     }
 
@@ -11,7 +11,9 @@ public class VisaoResumida extends Visao {
         String[] output = new String[docReferenciado.getElementos().size()];
 
         for (int i = 0; i < output.length; i++) {
-            output[i] = docReferenciado.getElemento(i).representacaoResumida();
+            if (docReferenciado.getElemento(i) instanceof Titulo) {
+                output[i] = docReferenciado.getElemento(i).representacaoResumida();
+            }
         }
         return output;
     }

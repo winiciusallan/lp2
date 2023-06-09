@@ -1,9 +1,6 @@
 package DocuMin.controllers;
 
-import DocuMin.entities.Atalho;
-import DocuMin.entities.Documento;
-import DocuMin.entities.Elemento;
-import DocuMin.entities.Visao;
+import DocuMin.entities.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +16,7 @@ public class DocumentoController {
         this.visoes = new ArrayList<>();
     }
 
-    /* OPERAÇÕES PARA ELEMENTO */
+    /* OPERAÇÕES PARA DOCUMENTO */
 
     public boolean criarDocumento(String titulo) throws IllegalAccessException {
         if (estaCadastrado(titulo)) return false;
@@ -51,6 +48,8 @@ public class DocumentoController {
         documentos.remove(titulo);
     }
 
+    /* OPERAÇÕES PARA ELEMENTO */
+
     public int contarElementos(String titulo) {
         if (!estaCadastrado(titulo)) throw new NoSuchElementException();
         if (titulo.trim().equals("")) throw new IllegalArgumentException();
@@ -68,8 +67,6 @@ public class DocumentoController {
     private boolean estaCadastrado(String titulo) {
         return documentos.get(titulo) != null;
     }
-
-    /* OPEAÇÕES PARA ELEMENTO */
 
     public int criaElemento(String tituloDoc, Elemento elem) {
         return documentos.get(tituloDoc).criaElemento(elem);
@@ -107,4 +104,41 @@ public class DocumentoController {
         }
     }
 
+    /* OPERAÇÕES PARA VISÃO */
+
+    public int criarVisaoCompleta(String tituloDoc) {
+        if (tituloDoc.trim().equals("")) throw new IllegalArgumentException();
+
+        Visao visao = new VisaoCompleta(documentos.get(tituloDoc));
+        visoes.add(visao);
+        return visoes.indexOf(visao);
+    }
+
+    public int criarVisaoResumida(String tituloDoc) {
+        if (tituloDoc.trim().equals("")) throw new IllegalArgumentException();
+
+        Visao visao = new VisaoResumida(documentos.get(tituloDoc));
+        visoes.add(visao);
+        return visoes.indexOf(visao);
+    }
+
+    public int criarVisaoPrioritaria(String tituloDoc, int prioridade) {
+        if (tituloDoc.trim().equals("")) throw new IllegalArgumentException();
+
+        Visao visao = new VisaoPrioritaria(documentos.get(tituloDoc), prioridade);
+        visoes.add(visao);
+        return visoes.indexOf(visao);
+    }
+
+    public int criarVisaoTitulo(String tituloDoc) {
+        if (tituloDoc.trim().equals("")) throw new IllegalArgumentException();
+
+        VisaoTitulo visao = new VisaoTitulo(documentos.get(tituloDoc));
+        visoes.add(visao);
+        return visoes.indexOf(visao);
+    }
+
+    public String[] exibirVisao(int visaoId) {
+        return visoes.get(visaoId).exibirVisao();
+    }
 }

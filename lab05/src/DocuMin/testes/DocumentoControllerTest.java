@@ -19,6 +19,8 @@ public class DocumentoControllerTest {
         docBase.criarDocumento("Documento base");
     }
 
+    /* TESTES PARA DOCUMENTO */
+
     @Test
     public void criarUmDocumentoComSucesso() throws IllegalAccessException {
         assertTrue(docBase.criarDocumento("Aula de p2. Isso é um teste"));
@@ -58,6 +60,8 @@ public class DocumentoControllerTest {
         assertThrows(IllegalArgumentException.class,
                 () -> docBase.removerDocumento(""));
     }
+
+    /* TESTES PARA ELEMENTO */
 
     @Test
     public void contaElementosComSucesso() {
