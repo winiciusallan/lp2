@@ -13,13 +13,14 @@ public class VisaoPrioritaria extends Visao {
 
     @Override
     public String[] exibirVisao() {
-        String[] output = new String[docReferenciado.getElementos().size()];
+        String[] temp = new String[docReferenciado.getElementos().size()];
 
-        for (int i = 0; i < output.length; i++) {
+        for (int i = 0; i < temp.length; i++) {
             if (docReferenciado.getElemento(i).getPrioridade() >= prioridade) {
-                output[i] = docReferenciado.getElemento(i).representacaoCompleta();
+                temp[i] = docReferenciado.getElemento(i).representacaoCompleta();
             }
         }
-        return output;
+
+        return temp;
     }
 }

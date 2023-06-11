@@ -7,6 +7,8 @@ public class Lista extends Elemento {
 
     public Lista(String valorLista, int prioridade, String separador, String charLista) {
         super(valorLista, prioridade);
+        this.separador = separador;
+        this.charLista = charLista;
     }
 
     public String getSeparador() { return separador; }
@@ -15,11 +17,11 @@ public class Lista extends Elemento {
 
     @Override
     public String representacaoCompleta() {
-        String[] valores = getValor().split(getSeparador());
+        String[] valores = getValor().split(separador);
         String output = "";
 
-        for (String charr : valores) {
-            output += getCharLista() + " " + charr + "\n";
+        for (String valor : valores) {
+            output += getCharLista() + " " + valor.trim() + "\n";
         }
         return output;
     }
@@ -29,8 +31,12 @@ public class Lista extends Elemento {
         String[] valores = getValor().split(getSeparador());
         String output = "";
 
-        for (String charr : valores) {
-            output += charr + getSeparador() + " ";
+        for (int i = 0; i < valores.length; i++) {
+            if (i == valores.length - 1) {
+                output += valores[i].trim();
+                break;
+            }
+            output += valores[i].trim() + separador + " ";
         }
         return output;
     }

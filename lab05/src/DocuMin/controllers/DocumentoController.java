@@ -96,9 +96,9 @@ public class DocumentoController {
         Documento docRef = documentos.get(tituloReferenciado);
         Documento docAtalho = documentos.get(tituloDoc);
 
-        if (!(docAtalho.isAtalho() || docAtalho.hasAtalho())) {
-            docRef.setIsAtalho(true);
-            docAtalho.setHasAtalho(true);
+        if (!(docAtalho.isAtalho() || docRef.hasAtalho())) {
+            docRef.setHasAtalho(true);
+            docAtalho.setIsAtalho(true);
 
             return documentos.get(tituloDoc)
                     .criaElemento(new Atalho(tituloReferenciado, docRef.mediaPrioridade(), docRef));
@@ -127,6 +127,7 @@ public class DocumentoController {
 
     public int criarVisaoPrioritaria(String tituloDoc, int prioridade) {
         if (tituloDoc.trim().equals("")) throw new IllegalArgumentException();
+        if (prioridade < 1 || prioridade > 5) throw new IllegalArgumentException();
 
         Visao visao = new VisaoPrioritaria(documentos.get(tituloDoc), prioridade);
         visoes.add(visao);

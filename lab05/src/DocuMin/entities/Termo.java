@@ -21,11 +21,11 @@ public class Termo extends Elemento {
     @Override
     public String representacaoCompleta() {
         String[] valores = getValor().split(getSeparador());
-        String output = "Total de termos: " + valores.length + "\n- ";
+        String output = "Total termos: " + valores.length + "\n- ";
 
         switch (this.ordem) {
             case "TAMANHO" -> Arrays.sort(valores, new OrdenaTamanho());
-            case "ALFABETICA" -> Arrays.sort(valores);
+            case "ALFABETICA" -> Arrays.sort(valores, String::compareToIgnoreCase);
         };
 
         for (int i = 0; i < valores.length; i++) {

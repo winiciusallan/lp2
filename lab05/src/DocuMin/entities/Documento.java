@@ -14,6 +14,7 @@ public class Documento {
 
     public Documento(String titulo) {
         this.titulo = titulo;
+        this.tamanho = -1;
         this.elementos = new ArrayList<>();
     }
 
@@ -74,6 +75,7 @@ public class Documento {
         int output = 0;
 
         for (Elemento elem : elementos) {
+            if (elem == null) return -1;
             output += elem.getPrioridade();
         }
         return output / elementos.size();
