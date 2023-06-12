@@ -362,11 +362,12 @@ public class DocumentoControllerTest {
     @Test
     public void exibirVisaoPrioritaria() {
         docBase.criarVisaoPrioritaria("Documento base", 4);
+        docBase.criaElemento("Documento base", new Texto("Texto basico", 5));
         docBase.criaElemento("Documento base", new Texto("Texto basico", 3));
         docBase.criaElemento("Documento base", new Lista("Teste ~ para Visao ~ lab 5",
                 4, "~", "-"));
 
-        String[] expected = new String[] {null, "- Teste\n- para Visao\n- lab 5\n"};
+        String[] expected = new String[] {"Texto basico", "- Teste\n- para Visao\n- lab 5\n"};
         assertArrayEquals(expected,docBase.exibirVisao(0));
     }
 
@@ -378,7 +379,7 @@ public class DocumentoControllerTest {
         docBase.criaElemento("Documento base", new Lista("Teste ~ para Visao ~ lab 5",
                 3, "~", "-"));
 
-        String[] expected = new String[] {"1. Titulo basico", null, null};
+        String[] expected = new String[] {"1. Titulo basico"};
         assertArrayEquals(expected,docBase.exibirVisao(0));
     }
 
