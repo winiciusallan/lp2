@@ -115,7 +115,7 @@ public class Documento {
      */
     public boolean moverPosicaoAcima(int pos) {
         if (pos == 0) return false;
-        Collections.swap(elementos, pos, pos + 1);
+        Collections.swap(elementos, pos, pos - 1);
         return true;
     }
 
@@ -126,8 +126,8 @@ public class Documento {
      * @return Valor lógico indicando se foi movido ou não.
      */
     public boolean moverPosicaoAbaixo(int pos) {
-        if (pos == elementos.size() ) return false;
-        Collections.swap(elementos, pos, pos - 1);
+        if (pos == elementos.size() - 1) return false;
+        Collections.swap(elementos, pos, pos + 1);
         return true;
     }
 
